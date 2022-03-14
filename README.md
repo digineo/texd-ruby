@@ -1,6 +1,6 @@
 # texd
 
-texd is a Ruby client for the [texd web service](https://github.com/dmke/texd).
+texd is a Ruby client for the [texd web service](https://github.com/digineo/texd).
 
 ## Installation
 
@@ -48,10 +48,10 @@ For development environments, you can start the texd server like so (requires
 Docker and about 4GB of disk space for the included TeX live installation):
 
 ```console
-$ docker run --rm -d -p localhost:2201:2201 --name texd-dev dmke/texd
+$ docker run --rm -d -p localhost:2201:2201 --name texd-dev digineogmbh/texd
 ```
 
-Head to [the texd project page](https://github.com/dmke/texd#readme) to learn
+Head to [the texd project page](https://github.com/digineo/texd#readme) to learn
 about other installation methods.
 
 ## Usage
@@ -73,7 +73,7 @@ push git commits and the created tag, and push the `.gem` file to
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dmke/texd.
+Bug reports and pull requests are welcome on GitHub at https://github.com/digineo/texd.
 
 ## License
 

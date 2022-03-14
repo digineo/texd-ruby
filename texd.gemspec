@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary     = "texd is a Ruby client for the texd web service."
   spec.description = "The texd project provides a network reachable TeX compiler. This gem is a client for that."
-  spec.homepage    = "https://github.com/dmke/texd-rb"
+  spec.homepage    = "https://github.com/digineo/texd-ruby"
   spec.license     = "MIT"
 
   spec.required_ruby_version = ">= 2.7.0"
