@@ -26,9 +26,23 @@ If this does not match your environment, you need can reconfigure texd:
 
 ```rb
 Texd.configure do |config|
-  config.endpoint = ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/render")
+  config.endpoint = ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/")
 end
 ```
+
+<details><summary>Full default config (click to open)</summary>
+
+```rb
+Texd.configure do |config|
+  config.endpoint     = ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/")
+  config.error_format = ENV.fetch("TEXD_ERRORS", "full")
+  config.tex_engine   = ENV["TEXD_ENGINE"]
+  config.tex_image    = ENV["TEXD_IMAGE"]
+  config.helpers      = [Texd::Helpers::Latex]
+end
+```
+
+</details>
 
 For development environments, you can start the texd server like so (requires
 Docker and about 4GB of disk space for the included TeX live installation):
@@ -42,7 +56,8 @@ about other installation methods.
 
 ## Usage
 
-
+> TODO. See https://github.com/amagical-net/rails-latex#label-Synopsis
+> in the meantime.
 
 ## Development
 
