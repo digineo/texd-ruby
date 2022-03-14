@@ -14,6 +14,9 @@ module Texd
 
         if body.is_a?(Hash)
           super format("%s error: %s", body.delete("category"), body.delete("error"))
+        elsif content_type.start_with?("text/plain")
+          tex_errors = body.lines.select { |l| l.start_with?("!") }.map(&:strip)
+          super "Compilation failed:\n\t#{tex_errors.join('\n\t')}"
         else
           super "Server responded with status #{code} (#{content_type})"
         end
