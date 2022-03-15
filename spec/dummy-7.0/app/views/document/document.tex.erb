@@ -1,0 +1,17 @@
+<% content_for :preamble do %>
+  \usepackage{hyperref}
+  \usepackage{graphicx}
+
+  \title{Test Document}
+<% end %>
+
+\maketitle
+
+\tableofcontents
+
+\section{First section}
+
+This document is for testing purposes!
+
+\includegraphics[width=1cm]{<%= texd_asset Rails.root.join("../fixtures/1x1.png") %>}
+\includegraphics[width=1cm]{<%= texd_asset Rails.root.join("../fixtures/1x1.png"), rename: false %>}
