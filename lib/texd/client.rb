@@ -7,19 +7,28 @@ require "json"
 module Texd
   class Client
     class ResponseError < Error
-      attr_reader :body
+      attr_reader :body, :content_type
 
       def initialize(code, content_type, body)
-        @body = body
+        @body         = body
+        @content_type = content_type
 
-        if body.is_a?(Hash)
+        if json?
           super format("%s error: %s", body.delete("category"), body.delete("error"))
-        elsif content_type.start_with?("text/plain")
+        elsif log?
           tex_errors = body.lines.select { |l| l.start_with?("!") }.map(&:strip)
           super "Compilation failed:\n\t#{tex_errors.join('\n\t')}"
         else
           super "Server responded with status #{code} (#{content_type})"
         end
+      end
+
+      def json?
+        body.is_a?(Hash)
+      end
+
+      def log?
+        content_type.start_with?("text/plain")
       end
     end
 
@@ -35,13 +44,9 @@ module Texd
       http("/status") { |uri| Net::HTTP::Get.new(uri) }
     end
 
-    def render(*files)
-      files = files.each_with_object({}) do |f, map|
-        map[File.basename(f.path)] = UploadIO.new(f, "application/octet-stream", f.path)
-      end
-
+    def render(upload_ios)
       http("/render", params: render_query_params) { |uri|
-        Net::HTTP::Post::Multipart.new uri, files
+        Net::HTTP::Post::Multipart.new uri, upload_ios
       }
     end
 

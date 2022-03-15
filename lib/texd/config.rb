@@ -25,6 +25,7 @@ module Texd
       error_format: ENV.fetch("TEXD_ERRORS", "full"),
       tex_engine:   ENV["TEXD_ENGINE"],
       tex_image:    ENV["TEXD_IMAGE"],
+      helpers:      [],
     }.freeze
 
     # Supported endpoint protocols.
@@ -38,7 +39,7 @@ module Texd
 
     attr_reader(*DEFAULT_CONFIGURATION.keys)
 
-    attr_writer :tex_image
+    attr_writer :tex_image, :helpers
 
     def initialize(**options)
       DEFAULT_CONFIGURATION.each do |key, default_value|

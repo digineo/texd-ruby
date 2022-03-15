@@ -46,15 +46,5 @@ module Texd
         str.gsub!(/\r?\n/, line_break)
       end
     end
-
-    def use(filename)
-      used_files << File.expand_path(filename)
-      File.basename(filename)
-    end
-
-    # @private api
-    def used_files
-      @used_files ||= []
-    end
   end
 end

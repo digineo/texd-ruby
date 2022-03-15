@@ -1,0 +1,11 @@
+\documentclass{<%= texd_attach "texd", rename: "texd.cls", with_extension: false %>}
+
+\usepackage{<%= texd_attach "sections", rename: false, with_extension: false %>}
+
+<%= content_for :preamble %>
+
+\begin{document}
+
+<%= yield %>
+
+\end{document}

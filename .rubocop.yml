@@ -150,6 +150,7 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Exclude:
+    - "*.gemspec"
     - spec/**/*.rb
     - config/**/*.rb
 
@@ -251,7 +252,7 @@ Style/FormatStringToken:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
 
 Style/GlobalStdStream:
   Enabled: true

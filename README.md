@@ -38,7 +38,7 @@ Texd.configure do |config|
   config.error_format = ENV.fetch("TEXD_ERRORS", "full")
   config.tex_engine   = ENV["TEXD_ENGINE"]
   config.tex_image    = ENV["TEXD_IMAGE"]
-  config.helpers      = [Texd::Helpers::Latex]
+  config.helpers      = []
 end
 ```
 
