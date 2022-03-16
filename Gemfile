@@ -3,5 +3,5 @@
 source "https://rubygems.org"
 gemspec
 
-gem "rails", "~> 7.0"
 gem "pry-byebug"
+gem "rails", "~> 7.0"

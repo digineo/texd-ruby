@@ -26,6 +26,7 @@ module Texd
       tex_engine:   ENV["TEXD_ENGINE"],
       tex_image:    ENV["TEXD_IMAGE"],
       helpers:      [],
+      lookup_paths: [], # Rails.root.join("app/tex") is inserted in railtie.rb
     }.freeze
 
     # Supported endpoint protocols.
@@ -39,7 +40,7 @@ module Texd
 
     attr_reader(*DEFAULT_CONFIGURATION.keys)
 
-    attr_writer :tex_image, :helpers
+    attr_writer :tex_image, :helpers, :lookup_paths
 
     def initialize(**options)
       DEFAULT_CONFIGURATION.each do |key, default_value|

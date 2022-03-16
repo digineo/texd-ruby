@@ -21,33 +21,36 @@ module Texd
   #   \usepackage{helper}
   class AttachmentList
     attr_reader :items
+    attr_reader :lookup_context
 
-    def initialize
-      @items = {}
+    # @param [Texd::LookupContext] lookup_context
+    def initialize(lookup_context)
+      @items          = {}
+      @lookup_context = lookup_context
     end
 
-    # Adds a file with the given `path` to the list. The output file name
-    # will be mangled, unless `rename` specifies a name to use. Setting
-    # `rename` to false also disables renaming (the output will then
-    # use the file's basename unaltered).
+    # Adds a file with the given `path` to the list. The file path must
+    # either be an absolute filename or be relative to app/tex/ of the
+    # host application. See `Texd::LookupContext` for details.
     #
-    # @param [ActionView::LookupContext] ctx current lookup context
+    # The output file name will be mangled, unless `rename` specifies a
+    # name to use. Setting `rename` to false also disables renaming (the
+    # output will then use the file's basename unaltered).
+    #
+    # Note: Adding the same `path` twice with different arguments will
+    # have no effect: The returned value on the second attempt will be the
+    # same as on the first one.
+    #
+    # @param [String, Pathname] path partial path
+    # @param [Boolean, String] rename affects the output file name. If
+    #   `true`, a random file name is generated for the TeX template,
+    #   `false` will use the basename of path.
+    #   When a string is given, that string is used instead. Be careful
+    #   to avoid name collisions.
+    # @return [Attachment]
     # @api private
-    def attach(ctx, path, rename = true)
-      # path: "foo.tex" => path="foo" prefix=current partial=false formats=[:tex]
-      #       "_bar.tex" => path="bar" prefix=current partial=true formats=[:tex]
-      #       "sig.png" => path="sig" prefix=current partial=false formats=[:png]
-      path = ctx.view_paths.find(path, "layouts", false, formats: %i[cls tex sty lco], variants: [], locale: [],
-        handlers: [])
-
-      att = Attachment.new(path.identifier, rename, items.size)
-
-      items[att.absolute_path] ||= att
-      items[att.absolute_path]
-    end
-
-    def asset(path, rename = true)
-      att = Attachment.new(path, rename, items.size)
+    def attach(path, rename = true)
+      att = Attachment.new(lookup_context.find(path), rename, items.size)
 
       items[att.absolute_path] ||= att
       items[att.absolute_path]
@@ -73,17 +76,27 @@ module Texd
     # absolute path to attachment on local file system
     attr_reader :absolute_path
 
-    def initialize(path, rename, index)
-      @absolute_path = File.expand_path(path)
+    # @param [Pathname] path see AttachmentList#attach
+    # @param [Boolean, String] rename see AttachmentList#attach
+    # @param [Integer] serial number of files currently in the parent
+    #   AttachmentList (used for renaming purposes)
+    # @api private
+    def initialize(path, rename, serial)
+      @absolute_path = path.expand_path
 
       @name = case rename
-      when true   then format("att%04d%s", index, File.extname(path))
-      when false  then File.basename(path)
+      when true   then format("att%04d%s", serial, path.extname)
+      when false  then path.basename.to_s
       when String then rename
       else raise RenameError, rename
       end
     end
 
+    # Returns the (renamed) output file name. When `with_extension` is
+    # `true`, the file extension is chopped.
+    #
+    # @param [Boolean] with_extension
+    # @return [String] output file name
     def name(with_extension = true)
       basename = File.basename(@name)
       return basename if with_extension
@@ -96,7 +109,7 @@ module Texd
 
     # @api private
     def to_upload_io
-      io = UploadIO.new(File.open(absolute_path), nil, name)
+      io = UploadIO.new(absolute_path.open("r"), nil, name)
       io.instance_variable_set :@original_filename, name
       io
     end

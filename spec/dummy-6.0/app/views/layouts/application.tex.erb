@@ -1,6 +1,6 @@
-\documentclass{<%= texd_attach "texd", rename: "texd.cls", with_extension: false %>}
+\documentclass{<%= texd_attach "texd.cls", rename: false, with_extension: false %>}
 
-\usepackage{<%= texd_attach "sections", rename: false, with_extension: false %>}
+\usepackage{<%= texd_attach "sections.sty", rename: false, with_extension: false %>}
 
 <%= content_for :preamble %>
 

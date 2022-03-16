@@ -11,6 +11,7 @@ require_relative "texd/config"
 require_relative "texd/helpers"
 require_relative "texd/client"
 require_relative "texd/attachment"
+require_relative "texd/lookup_context"
 require_relative "texd/railtie"
 
 module Texd
@@ -25,6 +26,7 @@ module Texd
   #     config.tex_engine   = ENV["TEXD_ENGINE"]
   #     config.tex_image    = ENV["TEXD_IMAGE"]
   #     config.helpers      = []
+  #     config.lookup_paths = [Rails.root.join("app/tex")]
   #   end
   #
   # @yield [Texd::Configuration] the previous config object
@@ -60,11 +62,7 @@ module Texd
       include Texd::Helpers
 
       define_method :texd_attach do |path, rename: true, with_extension: true|
-        attachments.attach(lookup_context, path, rename).name(with_extension)
-      end
-
-      define_method :texd_asset do |path, rename: true, with_extension: true|
-        attachments.asset(path, rename).name(with_extension)
+        attachments.attach(path, rename).name(with_extension)
       end
 
       Texd.config.helpers.each do |mod|
@@ -101,7 +99,8 @@ module Texd
   # @raise [Texd::Error] on other Texd related errors.
   # @return [String] the PDF object
   def render(*args)
-    attachments = AttachmentList.new
+    context     = LookupContext.new(config.lookup_paths)
+    attachments = AttachmentList.new(context)
 
     renderer = Class.new(ApplicationController) {
       helper ::Texd.helpers(attachments)

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 RSpec.describe Texd do
   describe "#render" do
-    subject(:result) { Texd.render(template: "document/document") }
+    subject(:result) { Texd.render(template: "documents/document") }
 
     it { is_expected.not_to be_nil }
   end
