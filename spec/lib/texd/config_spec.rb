@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Texd::Configuration do
-  subject(:config) { Texd::Configuration.new(user_config) }
+  subject(:config) { Texd::Configuration.new(**user_config) }
 
   let(:user_config) { {} }
 
