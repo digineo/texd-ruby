@@ -28,6 +28,7 @@ module Texd
 
     # Escapes the given text, making it safe for use in TeX documents.
     def escape(text, line_break = "\\\\\\", typographic: true)
+      text = +text
       text.to_s.tap do |str|
         str.gsub!(ESCAPE_RE) do |m|
           if Regexp.last_match(1)
@@ -44,7 +45,7 @@ module Texd
         end
 
         str.gsub!(/\r?\n/, line_break)
-      end
+      end.freeze
     end
   end
 end
