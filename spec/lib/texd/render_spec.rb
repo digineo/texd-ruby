@@ -6,6 +6,6 @@ RSpec.describe Texd do
   describe "#render" do
     subject(:result) { Texd.render(template: "documents/document") }
 
-    it { is_expected.not_to be_nil }
+    it { is_expected.to start_with "%PDF-1." }
   end
 end

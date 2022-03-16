@@ -44,7 +44,7 @@ module Texd
 
     def initialize(**options)
       DEFAULT_CONFIGURATION.each do |key, default_value|
-        public_send "#{key}=", options.fetch(key, default_value)
+        public_send "#{key}=", options.fetch(key, default_value.dup)
       end
     end
 

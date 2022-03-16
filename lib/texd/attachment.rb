@@ -49,7 +49,7 @@ module Texd
     #   to avoid name collisions.
     # @return [Attachment]
     # @api private
-    def attach(path, rename = true)
+    def attach(path, rename = true) # rubocop:disable Style/OptionalBooleanParameter
       att = Attachment.new(lookup_context.find(path), rename, items.size)
 
       items[att.absolute_path] ||= att
@@ -97,7 +97,7 @@ module Texd
     #
     # @param [Boolean] with_extension
     # @return [String] output file name
-    def name(with_extension = true)
+    def name(with_extension = true) # rubocop:disable Style/OptionalBooleanParameter
       basename = File.basename(@name)
       return basename if with_extension
 

@@ -101,12 +101,10 @@ module Texd
   def render(*args)
     context     = LookupContext.new(config.lookup_paths)
     attachments = AttachmentList.new(context)
-
-    renderer = Class.new(ApplicationController) {
+    tex_source  = Class.new(ApplicationController) {
       helper ::Texd.helpers(attachments)
-    }.renderer
+    }.render(*args)
 
-    tex_source       = renderer.render(*args)
     ios              = attachments.to_upload_ios
     input_io         = UploadIO.new(StringIO.new(tex_source), nil, "input.tex")
     input_io.instance_variable_set :@original_filename, "input.tex"

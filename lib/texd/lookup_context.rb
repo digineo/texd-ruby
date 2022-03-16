@@ -48,7 +48,7 @@ module Texd
       end
 
       msg  = format "file %p not found\nsearch paths:\n\t", name
-      msg << paths.join("\t\n")
+      msg << paths.join("\n\t")
       raise MissingFileError, msg
     end
 
