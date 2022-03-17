@@ -30,7 +30,7 @@ module Texd
       tex_engine:    ENV["TEXD_ENGINE"],
       tex_image:     ENV["TEXD_IMAGE"],
       helpers:       Set.new,
-      lookup_paths:  Set.new, # Rails.root.join("app/tex") is inserted in railtie.rb
+      lookup_paths:  [], # Rails.root.join("app/tex") is inserted in railtie.rb
     }.freeze
 
     # Supported endpoint protocols.
