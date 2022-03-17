@@ -55,10 +55,19 @@ module Texd
     def http(path, params: nil)
       uri = build_request_uri(path, params)
 
-      Net::HTTP.start uri.host, uri.port, use_ssl: uri.scheme == "https" do |http|
+      Net::HTTP.start uri.host, uri.port, **request_options(uri) do |http|
         req = yield(uri)
         decode_response http.request(req)
       end
+    end
+
+    def request_options(uri)
+      {
+        use_ssl:       uri.scheme == "https",
+        open_timeout:  config.open_timeout,
+        write_timeout: config.write_timeout,
+        read_timeout:  config.read_timeout,
+      }
     end
 
     def build_request_uri(path, params)
