@@ -132,7 +132,7 @@ module Texd
     end
 
     def open_timeout=(val)
-      set_timeout, :open, val
+      set_timeout :open, val
     end
 
     def read_timeout=(val)
