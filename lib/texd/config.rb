@@ -172,7 +172,7 @@ module Texd
       when Numeric  then val
       when String   then val.to_i
       when NilClass then 0
-      else raise InvalidConfig.new(nil, )
+      else
         msg = "expected Numeric, String or NilClass for #{name}_timout, got #{val}:#{val.class}"
         raise TypeError, msg
       end
