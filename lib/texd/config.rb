@@ -21,12 +21,15 @@ module Texd
 
     # This is the default configuration. It is applied in the constructor.
     DEFAULT_CONFIGURATION = {
-      endpoint:     ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/"),
-      error_format: ENV.fetch("TEXD_ERRORS", "full"),
-      tex_engine:   ENV["TEXD_ENGINE"],
-      tex_image:    ENV["TEXD_IMAGE"],
-      helpers:      [],
-      lookup_paths: [], # Rails.root.join("app/tex") is inserted in railtie.rb
+      endpoint:      ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/"),
+      open_timeout:  ENV.fetch("TEXD_OPEN_TIMEOUT", 60),
+      read_timeout:  ENV.fetch("TEXD_READ_TIMEOUT", 180),
+      write_timeout: ENV.fetch("TEXD_WRITE_TIMEOUT", 60),
+      error_format:  ENV.fetch("TEXD_ERRORS", "full"),
+      tex_engine:    ENV["TEXD_ENGINE"],
+      tex_image:     ENV["TEXD_IMAGE"],
+      helpers:       Set.new,
+      lookup_paths:  Set.new, # Rails.root.join("app/tex") is inserted in railtie.rb
     }.freeze
 
     # Supported endpoint protocols.
@@ -64,6 +67,18 @@ module Texd
       @endpoint = uri
     end
 
+    def open_timeout=(val)
+      set_timeout, :open, val
+    end
+
+    def read_timeout=(val)
+      set_timeout :read, val
+    end
+
+    def write_timeout=(val)
+      set_timeout :write, val
+    end
+
     def error_format=(val)
       val ||= "json"
       val   = val.to_s
@@ -84,6 +99,21 @@ module Texd
       end
 
       @tex_engine = val
+    end
+
+    private
+
+    def set_timeout(name, val)
+      val = case val
+      when Numeric  then val
+      when String   then val.to_i
+      when NilClass then 0
+      else raise InvalidConfig.new(nil, )
+        msg = "expected Numeric, String or NilClass for #{name}_timout, got #{val}:#{val.class}"
+        raise TypeError, msg
+      end
+
+      instance_variable_set "@#{name}_timeout", val
     end
   end
 end
