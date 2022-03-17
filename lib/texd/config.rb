@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "uri"
+require "set"
 
 module Texd
   class Configuration
@@ -41,9 +42,72 @@ module Texd
     # Supported TeX engines.
     TEX_ENGINES = %w[xelatex lualatex pdflatex].freeze
 
-    attr_reader(*DEFAULT_CONFIGURATION.keys)
+    # Endpoint is a URI pointing to the texd server instance.
+    #
+    # The default is http://localhost:2201/ and can be overriden by the
+    # `TEXD_ENDPOINT` environment variable.
+    attr_reader :endpoint
 
-    attr_writer :tex_image, :helpers, :lookup_paths
+    # Timeout (in seconds) for the initial connect to the endpoint.
+    #
+    # The default is 60 (1 min) and can be overriden by the `TEXD_OPEN_TIMEOUT`
+    # environment variable.
+    attr_reader :open_timeout
+
+    # Timeout (in seconds) for reads from the endpoint. You want this value to
+    # be in the same ballbark as texd's `--compile-timoeut` option.
+    #
+    # The default is 180 (3 min) and can be overriden by the `TEXD_OPEN_TIMEOUT`
+    # environment variable.
+    attr_reader :read_timeout
+
+    # Timeout (in seconds) for writing the request to the endpoint. You want
+    # this value to be in the same ballpark as texd's `--queue-timeout` option.
+    #
+    # The default is 60 (1 min) and can be overriden by the `TEXD_WRITE_TIMEOUT`
+    # environment variable.
+    attr_reader :write_timeout
+
+    # The texd server usually reports errors in JSON format, however, when the
+    # compilation fails, the TeX compiler's output ist often most useful.
+    #
+    # Supported values are described in ERROR_FORMATS.
+    #
+    # The default is "full" and can be overriden by the `TEXD_WRITE_TIMEOUT`
+    # environment variable.
+    attr_reader :error_format
+
+    # This is the selected TeX engine. Supported values are described in
+    # TEX_ENGINES.
+    #
+    # The default is blank (meaning the server shall default to its `--tex-engine`
+    # option), and can be overriden by the `TEXD_ENGINE` environment variable.
+    attr_reader :tex_engine
+
+    # When texd runs in container mode, it may provide multiple Docker images to
+    # select from. This setting selects a specific container image.
+    #
+    # The default value is blank (meaning texd will select an image), and can be
+    # overriden byt the `TEXD_IMAGE` environment variable.
+    attr_reader :tex_image
+
+    # List of additional helper modules to make available in the template views.
+    # Texd::Helpers is always included, and you may add additional ones.
+    #
+    # This can't be influenced by environment variables.
+    attr_reader :helpers
+
+    # Set of paths to perform file lookups in. The set is searched in order,
+    # meaning files found in later entries won't be returned if entries with the
+    # same name exist in earlier entries.
+    #
+    # By default, this only contains `Rails.root.join("app/tex")`, however
+    # Rails engines might append additional entries.
+    #
+    # A Texd::LookupContext is constructed from this set.
+    attr_reader :lookup_paths
+
+    attr_writer :tex_image, :helpers, :lookup_paths # :nodoc:
 
     def initialize(**options)
       DEFAULT_CONFIGURATION.each do |key, default_value|
