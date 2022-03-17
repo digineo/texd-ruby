@@ -89,13 +89,13 @@ module Texd
     #
     # The default value is blank (meaning texd will select an image), and can be
     # overriden byt the `TEXD_IMAGE` environment variable.
-    attr_reader :tex_image
+    attr_accessor :tex_image
 
     # List of additional helper modules to make available in the template views.
     # Texd::Helpers is always included, and you may add additional ones.
     #
     # This can't be influenced by environment variables.
-    attr_reader :helpers
+    attr_accessor :helpers
 
     # Set of paths to perform file lookups in. The set is searched in order,
     # meaning files found in later entries won't be returned if entries with the
@@ -105,9 +105,7 @@ module Texd
     # Rails engines might append additional entries.
     #
     # A Texd::LookupContext is constructed from this set.
-    attr_reader :lookup_paths
-
-    attr_writer :tex_image, :helpers, :lookup_paths # :nodoc:
+    attr_accessor :lookup_paths
 
     def initialize(**options)
       DEFAULT_CONFIGURATION.each do |key, default_value|
