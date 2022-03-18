@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Texd
+  # @!parse
+  #   # Catch-all error for all exceptions raised by Texd
+  #   class Error < StandarError; end
   Error = Class.new StandardError
 end
 
@@ -11,6 +14,7 @@ require_relative "texd/config"
 require_relative "texd/helpers"
 require_relative "texd/client"
 require_relative "texd/attachment"
+require_relative "texd/document"
 require_relative "texd/lookup_context"
 require_relative "texd/railtie"
 
@@ -65,6 +69,12 @@ module Texd
         attachments.attach(path, rename).name(with_extension)
       end
 
+      define_method :texd_reference do |path, rename: true, with_extension: true|
+        attachments.reference(path, rename).name(with_extension)
+      end
+
+      alias_method :texd_references, :texd_reference
+
       Texd.config.helpers.each do |mod|
         include mod
       end
@@ -74,22 +84,22 @@ module Texd
   # Render compiles a template, uploads the files to the texd instance,
   # and returns the PDF.
   #
-  # Other arguments are directly forwarded to ApplicationController#render
+  # The arguments are directly forwarded to ApplicationController#render
   # (which in turn delegates to ActionView::Renderer#render).
   #
   # @example Render app/views/document/document.tex.erb
   #   begin
   #     pdf = Texd.render(template: "documents/document")
-  #   rescue Texd::Client::ResponseError => err
-  #     if err.json?
-  #       # likely an input error, like missing files or invalid file names.
-  #       # inspect err.body for details
-  #     elsif err.log?
-  #       # compilation error. only available when Texd.config.error_format
-  #       # is either "full" or "condensed"
-  #     else
-  #       # something else went wrong
-  #     end
+  #   rescue Texd::Client::CompilationError => err
+  #     # Compilation failed and we might have a log in err.logs (only
+  #     # Texd.config.error_format is "full" or "condensed").
+  #     # Otherwise some details might be available in err.details.
+  #     # have a log in err.details
+  #   rescue Texd::Client::InputError => err
+  #     # something failed during input file processing. For details see
+  #     # err.details
+  #   rescue Texd::Client::QueueError => err
+  #     # server is busy, try again later.
   #   rescue Texd::Error => err
   #     # something went wrong before we even got to sent data to the server
   #   end
@@ -99,17 +109,13 @@ module Texd
   # @raise [Texd::Error] on other Texd related errors.
   # @return [String] the PDF object
   def render(*args)
-    context     = LookupContext.new(config.lookup_paths)
-    attachments = AttachmentList.new(context)
-    tex_source  = Class.new(ApplicationController) {
-      helper ::Texd.helpers(attachments)
-    }.render(*args)
+    doc = Document.compile(*args)
 
-    ios              = attachments.to_upload_ios
-    input_io         = UploadIO.new(StringIO.new(tex_source), nil, "input.tex")
-    input_io.instance_variable_set :@original_filename, "input.tex"
-    ios["input.tex"] = input_io
-
-    client.render(ios)
+    client.render doc.to_upload_ios,
+      input: doc.main_input_name
+  rescue Client::ReferenceError => err
+    # retry once with resolved references
+    client.render doc.to_upload_ios(missing_refs: err.references),
+      input: doc.main_input_name
   end
 end

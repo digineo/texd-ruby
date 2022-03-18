@@ -44,7 +44,7 @@ module Texd
 
     # Endpoint is a URI pointing to the texd server instance.
     #
-    # The default is http://localhost:2201/ and can be overriden by the
+    # The default is `http://localhost:2201/` and can be overriden by the
     # `TEXD_ENDPOINT` environment variable.
     attr_reader :endpoint
 
@@ -119,8 +119,17 @@ module Texd
       end
     end
 
+    # @api private
+    def default_render_params
+      {
+        errors: error_format,
+        engine: tex_engine,
+        image:  tex_image,
+      }.compact
+    end
+
     def endpoint=(val)
-      uri = URI.parse(val)
+      uri = val.is_a?(URI::Generic) ? val : URI.parse(val)
 
       unless ENDPOINT_CLASSES.any? { |klass| uri.is_a? klass }
         raise InvalidConfig.new("Value must be a URL", :endpoint, got: val, expected: ENDPOINT_CLASSES)

@@ -71,6 +71,18 @@ then run `bundle exec rake release`, which will create a git tag for the version
 push git commits and the created tag, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
 
+You may want to run a texd server instance locally. This is easiest done by
+calling either `make texd-server` (this requires Docker). If you need to
+develop/test against the bleeding edge, you can clone and run texd from source:
+
+```console
+$ cd ~/code/github.com/digineo
+$ git clone git@github.com:digineo/texd
+$ cd texd
+$ mkdir -p tmp/refs
+$ make run-container EXTRA_RUN_ARGS='--reference-store dir://./tmp/refs'
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/digineo/texd.

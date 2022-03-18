@@ -32,7 +32,16 @@ jobs:
 
     - name: Start texd container
       run: |
-        docker run --rm -d --name texd-dev -p 2201:2201 -v $(mktemp -d):/texd --user=$(id -u):$(id -g) digineode/texd
+        docker run --rm -d --name texd-dev \
+          -p 2201:2201 \
+          -v $(mktemp -d):/texd \
+          -v $(mktemp -d):/refs \
+          --user=$(id -u):$(id -g) \
+            digineode/texd --reference-store dir:///refs
+
+        until curl -fs -o/dev/null http://localhost:2201/status; do sleep 2; echo waiting for texd; done
 
     - name: Run the default task
-      run: make test
+      run: |
+        export TEXD_TEST_CLEANUP_REFS=$texd_refs
+        make test

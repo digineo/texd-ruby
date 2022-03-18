@@ -10,19 +10,22 @@ module Texd
   #
   # To add a file to the loolup path set, configure Texd:
   #
-  #   # in lib/yourgem/railtie.rb
-  #   module Yourgem::Railtie < Rails::Railtie
-  #     initializer "configure Texd" do
-  #       Texd.configure do |config|
-  #         config.lookup_paths << Pathname.new(__dir__).join("../../app/tex")
+  #     # in lib/yourgem/railtie.rb
+  #     module Yourgem::Railtie < Rails::Railtie
+  #       initializer "configure Texd" do
+  #         Texd.configure do |config|
+  #           config.lookup_paths << Pathname.new(__dir__).join("../../app/tex")
+  #         end
   #       end
   #     end
-  #   end
   #
-  # Then files in your app/tex/ directory will be used, if they are not
-  # found in the host application's app/tex/ directory ("app/tex" is just
+  # Then files in your `app/tex/` directory will be used, if they are not
+  # found in the host application's `app/tex/` directory ("app/tex" is just
   # a convention, you could add arbitrary directories).
   class LookupContext
+    # @!parse
+    #   # Raised when LookupContext#find could not find a file.
+    #   class MissingFileError < RenderError; end
     MissingFileError = Class.new Error
 
     # A list of directories, in priority order, to search files in.

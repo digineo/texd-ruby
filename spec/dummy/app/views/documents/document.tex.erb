@@ -17,5 +17,9 @@ This document is for testing purposes!
 <%= render "documents/subsection", name: name %>
 <% end %>
 
-\includegraphics[width=1cm]{<%= texd_attach Rails.root.join("../fixtures/1x1.png") %>}
-\includegraphics[width=1cm]{<%= texd_attach Rails.root.join("../fixtures/1x1.png"), rename: false %>}
+\includegraphics[width=1cm]{<%= texd_reference Rails.root.join("../fixtures/1x1.png") %>}
+\includegraphics[width=1cm]{<%= texd_reference Rails.root.join("../fixtures/1x1.png"), rename: false %>}
+
+\input{<%= texd_attach "footer.tex" %>}
+
+\includegraphics[width=1cm]{<%= texd_reference "signature.png" %>}

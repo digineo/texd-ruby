@@ -41,3 +41,14 @@ rubocop:
 .PHONY: docs
 docs:
 	export BUNDLE_GEMFILE=Gemfile && bundle --quiet && bundle exec yard doc --markup markdown 'lib/**/*.rb' - README.md CHANGELOG.md LICENSE
+
+.PHONY: texd-docker
+texd-docker:
+	mkdir -p tmp/jobs tmp/refs
+	docker run --rm \
+		--name texd-dev \
+		-p 127.0.0.1:2201:2201 \
+		-v $$(pwd)/tmp/jobs:/texd \
+		-v $$(pwd)/tmp/refs:/refs \
+		--user=$(id -u):$(id -g) \
+			digineode/texd --reference-store dir:///refs
