@@ -2,10 +2,11 @@
 
 ENV["RAILS_ENV"] ||= "test"
 require "bundler/setup"
+require "combustion"
 
-require "rails"
-dummy_path = "spec/dummy-#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}"
-require_relative "../#{dummy_path}/config/environment.rb"
+Combustion.path = "spec/dummy"
+Combustion.initialize! :action_controller, :action_view
+
 require "rspec/rails"
 
 # Add additional requires below this line. Rails is not loaded until this point!
