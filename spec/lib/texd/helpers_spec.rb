@@ -7,6 +7,10 @@ RSpec.describe Texd::Helpers do
     expect view_mock.escape(input, **rest)
   end
 
+  it "handles nil values" do
+    expect_escape(nil).to eq ""
+  end
+
   it "escapes dollar and linebreak" do
     expect_escape("foo$\nbar").to eq "foo\\$\\\\bar"
   end
