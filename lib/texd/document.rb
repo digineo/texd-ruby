@@ -6,8 +6,8 @@ module Texd
     attr_reader :attachments
 
     # Shorthand for `new.compile`.
-    def self.compile(*args)
-      new.compile(*args)
+    def self.compile(template:, locals: {})
+      new.compile(template: template, locals: locals)
     end
 
     def initialize

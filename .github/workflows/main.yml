@@ -13,7 +13,7 @@ jobs:
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
-        ruby: ['2.7', '3.0']
+        ruby: ['2.7', '3.0', '3.1']
 
     steps:
     - name: Login to Docker Hub
@@ -42,6 +42,4 @@ jobs:
         until curl -fs -o/dev/null http://localhost:2201/status; do sleep 2; echo waiting for texd; done
 
     - name: Run the default task
-      run: |
-        export TEXD_TEST_CLEANUP_REFS=$texd_refs
-        make test
+      run: make test
