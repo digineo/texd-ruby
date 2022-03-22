@@ -22,7 +22,9 @@ module Texd
     #   forwards to ActionView::Renderer#render).
     # @return [Compilation]
     def compile(*args)
-      helper_mod = ::Texd.helpers(attachments)
+      locals     = args.last.delete(:locals) if args.last.is_a?(Hash)
+      helper_mod = ::Texd.helpers(attachments, locals)
+
       tex_source = Class.new(ApplicationController) {
         helper helper_mod
       }.render(*args)

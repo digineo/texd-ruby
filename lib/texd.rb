@@ -55,15 +55,25 @@ module Texd
     @client
   end
 
-  # Creates a helper module containing (a) the `texd_attach` helper,
-  # and (b) any other helper configured in Text.config.helpers.
+  # Creates a helper module containing:
   #
-  # This needs to be dynamic, because the attachment list is volatile.
+  # 1. the `texd_attach` and `texd_reference` helper,
+  # 2. locals passed in, transformed to helper methods, and
+  # 3. any other helper configured in Text.config.helpers.
   #
   # @api private
-  def helpers(attachments)
+  # @param [Texd::AttachmentList] attachments
+  # @param [Hash, nil] locals
+  # @return [Module] a new helper module
+  def helpers(attachments, locals) # rubocop:disable Metrics/AbcSize
+    locals ||= {}
+
     Module.new do
       include Texd::Helpers
+
+      Texd.config.helpers.each do |mod|
+        include mod
+      end
 
       define_method :texd_attach do |path, rename: true, with_extension: true|
         attachments.attach(path, rename).name(with_extension)
@@ -75,8 +85,8 @@ module Texd
 
       alias_method :texd_references, :texd_reference
 
-      Texd.config.helpers.each do |mod|
-        include mod
+      locals.each do |name, value|
+        define_method(name) { value }
       end
     end
   end

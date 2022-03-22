@@ -4,19 +4,20 @@ require "spec_helper"
 
 RSpec.describe Texd do
   describe "#render" do
-    subject(:result) { Texd.render(template: template) }
+    subject(:result) { Texd.render(template: template, locals: locals) }
 
+    let(:locals)   { nil }
     let(:template) { "documents/document" }
 
     it { is_expected.to start_with "%PDF-1." }
 
+    def reconfigure!(**knobs)
+      config = Texd.config.to_h.merge(knobs)
+      allow(Texd).to receive(:config).and_return(Texd::Configuration.new(**config))
+    end
+
     context "broken input" do
       let(:template) { "broken/missing" }
-
-      def reconfigure!(**knobs)
-        config = Texd.config.to_h.merge(knobs)
-        allow(Texd).to receive(:config).and_return(Texd::Configuration.new(**config))
-      end
 
       def expect_compilation_error
         subject
@@ -62,6 +63,28 @@ RSpec.describe Texd do
             "output" => a_string_matching(/Log file says no output from latex/),
           )
         end
+      end
+    end
+
+    context "with custom helper" do
+      let(:template) { "my_helper/doc" }
+
+      it "can call helper methods" do
+        reconfigure! helpers: Set[Module.new {
+          def my_helper_method
+            42
+          end
+        }]
+        is_expected.to start_with "%PDF-1."
+      end
+    end
+
+    context "with locals" do
+      let(:locals)   { { my_helper_method: "21\\times 2" } }
+      let(:template) { "my_helper/doc" }
+
+      it "can call helper methods" do
+        is_expected.to start_with "%PDF-1."
       end
     end
   end
