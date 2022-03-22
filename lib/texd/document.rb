@@ -18,16 +18,16 @@ module Texd
     # Compile converts templates into TeX sources and collects file
     # references (created with `texd_attach` and `texd_reference` helpers).
     #
-    # @param args are forwarded to ApplicationController#render (which in turn
-    #   forwards to ActionView::Renderer#render).
+    # @param [String] template name of template file in ActionView's lookup
+    #   context.
+    # @param [Hash, nil] locals will be made available as getter methods in
+    #   the template.
     # @return [Compilation]
-    def compile(*args)
-      locals     = args.last.delete(:locals) if args.last.is_a?(Hash)
+    def compile(template:, locals: {})
       helper_mod = ::Texd.helpers(attachments, locals)
-
       tex_source = Class.new(ApplicationController) {
         helper helper_mod
-      }.render(*args)
+      }.render(template: template, format: :tex)
 
       main = attachments.main_input(tex_source)
       Compilation.new(main.name, attachments)

@@ -94,8 +94,8 @@ module Texd
   # Render compiles a template, uploads the files to the texd instance,
   # and returns the PDF.
   #
-  # The arguments are directly forwarded to ApplicationController#render
-  # (which in turn delegates to ActionView::Renderer#render).
+  # The arguments are directly forwarded to Texd::Document (and end up in
+  # ActionView::Renderer#render).
   #
   # @example Render app/views/document/document.tex.erb
   #   begin
@@ -114,12 +114,16 @@ module Texd
   #     # something went wrong before we even got to sent data to the server
   #   end
   #
+  # @param [String] template name of template file in ActionView's lookup
+  #   context.
+  # @param [Hash, nil] locals will be made available as getter methods in
+  #   the template.
   # @raise [Texd::Client::ResponseError] on input and queue errors. Also on
   #   compilation errors, if Texd.config.error_format is set to JSON.
   # @raise [Texd::Error] on other Texd related errors.
   # @return [String] the PDF object
-  def render(*args)
-    doc = Document.compile(*args)
+  def render(template:, locals: {})
+    doc = Document.compile(template: template, locals: locals)
 
     client.render doc.to_upload_ios,
       input: doc.main_input_name
