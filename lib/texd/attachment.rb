@@ -202,13 +202,29 @@ module Texd
         }
       end
 
+      @cache = Cache.new(128)
+
+      class << self
+        attr_accessor :cache
+      end
+
       # @api private
       def checksum
-        @checksum ||= begin
+        @checksum ||= create_checksum
+      end
+
+      # @api private
+      def create_checksum
+        key = [::File.stat(absolute_path).mtime, absolute_path]
+
+        encoded = self.class.cache.read(key)
+        unless encoded
           digest  = Digest::SHA256.file(absolute_path).digest
           encoded = Base64.urlsafe_encode64(digest)
-          "sha256:#{encoded}"
+          self.class.cache.write(key, encoded)
         end
+
+        "sha256:#{encoded}"
       end
     end
   end
