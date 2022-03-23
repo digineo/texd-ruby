@@ -52,6 +52,10 @@ module Texd
       @capacity = capacity
     end
 
+    def lookup(key)
+      read(key) || write(key, yield)
+    end
+
     def read(key)
       @mtx.synchronize do
         node = hash[key]

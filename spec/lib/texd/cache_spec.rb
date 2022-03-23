@@ -62,4 +62,26 @@ RSpec.describe Texd::Cache do
       expect(cache.hash.keys).to include([2, :b], [3, :c], [4, :d])
     end
   end
+
+  describe "#lookup" do
+    it "block is evaluated once" do
+      one = cache.lookup(:same_key) { 1 }
+      two = cache.lookup(:same_key) { 2 }
+      expect(cache.count).to eq 1
+      expect([one, two]).to match [1, 1]
+    end
+
+    it "fills the cache" do
+      cache.lookup(:one) { 1 }
+      cache.lookup(:two) { 2 }
+      cache.lookup(:three) { 3 }
+      expect(cache.count).to eq 3
+      expect(cache.hash.keys).to include(:one, :two, :three)
+
+      cache.lookup(:four) { 4 }
+      cache.lookup(:two) { 2 }
+      expect(cache.count).to eq 3
+      expect(cache.hash.keys).to include(:two, :three, :four)
+    end
+  end
 end
