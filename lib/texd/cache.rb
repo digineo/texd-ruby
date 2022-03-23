@@ -17,7 +17,8 @@ module Texd
           node.next = node
           node.prev = node
         end
-        @head           = node
+
+        @head = node
       end
 
       def remove(node)
