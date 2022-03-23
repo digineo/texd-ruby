@@ -60,24 +60,6 @@ module Texd
       "reference"   => ReferenceError,
     }.freeze
 
-    class ResponseError < Error
-      attr_reader :body, :content_type
-
-      def initialize(code, content_type, body)
-        @body         = body
-        @content_type = content_type
-
-        if json?
-          super format("%s error: %s", body.delete("category"), body.delete("error"))
-        elsif log?
-          tex_errors = body.lines.select { |l| l.start_with?("!") }.map(&:strip)
-          super "Compilation failed:\n\t#{tex_errors.join('\n\t')}"
-        else
-          super "Server responded with status #{code} (#{content_type})"
-        end
-      end
-    end
-
     USER_AGENT = "texd-ruby/#{VERSION} Ruby/#{RUBY_VERSION}"
 
     attr_reader :config
