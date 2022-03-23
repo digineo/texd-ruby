@@ -50,5 +50,5 @@ texd-docker:
 		-p 127.0.0.1:2201:2201 \
 		-v $$(pwd)/tmp/jobs:/texd \
 		-v $$(pwd)/tmp/refs:/refs \
-		--user=$(id -u):$(id -g) \
+		--user=$$(id -u):$$(id -g) \
 			digineode/texd --reference-store dir:///refs
