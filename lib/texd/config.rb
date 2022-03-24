@@ -22,15 +22,16 @@ module Texd
 
     # This is the default configuration. It is applied in the constructor.
     DEFAULT_CONFIGURATION = {
-      endpoint:      ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/"),
-      open_timeout:  ENV.fetch("TEXD_OPEN_TIMEOUT", 60),
-      read_timeout:  ENV.fetch("TEXD_READ_TIMEOUT", 180),
-      write_timeout: ENV.fetch("TEXD_WRITE_TIMEOUT", 60),
-      error_format:  ENV.fetch("TEXD_ERRORS", "full"),
-      tex_engine:    ENV["TEXD_ENGINE"],
-      tex_image:     ENV["TEXD_IMAGE"],
-      helpers:       Set.new,
-      lookup_paths:  [], # Rails.root.join("app/tex") is inserted in railtie.rb
+      endpoint:       ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/"),
+      open_timeout:   ENV.fetch("TEXD_OPEN_TIMEOUT", 60),
+      read_timeout:   ENV.fetch("TEXD_READ_TIMEOUT", 180),
+      write_timeout:  ENV.fetch("TEXD_WRITE_TIMEOUT", 60),
+      error_format:   ENV.fetch("TEXD_ERRORS", "full"),
+      tex_engine:     ENV["TEXD_ENGINE"],
+      tex_image:      ENV["TEXD_IMAGE"],
+      helpers:        Set.new,
+      lookup_paths:   [], # Rails.root.join("app/tex") is inserted in railtie.rb
+      ref_cache_size: 128,
     }.freeze
 
     # Supported endpoint protocols.
@@ -106,6 +107,13 @@ module Texd
     #
     # A Texd::LookupContext is constructed from this set.
     attr_accessor :lookup_paths
+
+    # Cache size for file hashes computed by Texd::Attachment::Reference.
+    # Cannot be changed after the first document (using the `texd_reference`
+    # helper) was renderered.
+    #
+    # By default, the cache keeps hashes of the last 128 reference files.
+    attr_accessor :ref_cache_size
 
     def initialize(**options)
       DEFAULT_CONFIGURATION.each do |key, default_value|

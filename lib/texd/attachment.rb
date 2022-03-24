@@ -203,7 +203,7 @@ module Texd
       end
 
       def self.cache
-        @cache ||= Cache.new(128)
+        @cache ||= Cache.new(Texd.config.ref_cache_size)
       end
 
       # @api private
