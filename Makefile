@@ -45,10 +45,11 @@ docs:
 .PHONY: texd-docker
 texd-docker:
 	mkdir -p tmp/jobs tmp/refs
+	rm -vf tmp/jobs/* tmp/refs/*
 	docker run --rm \
 		--name texd-dev \
 		-p 127.0.0.1:2201:2201 \
 		-v $$(pwd)/tmp/jobs:/texd \
 		-v $$(pwd)/tmp/refs:/refs \
-		--user=$$(id -u):$$(id -g) \
-			digineode/texd --reference-store dir:///refs
+		-u $$(id -u):$$(id -g) \
+			digineode/texd --reference-store dir:///refs --keep-jobs always
