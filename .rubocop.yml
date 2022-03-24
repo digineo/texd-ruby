@@ -288,7 +288,9 @@ Style/RedundantAssignment:
   Enabled: true
 
 Style/RedundantFetchBlock:
-  Enabled: true
+  Enabled: false
+  Exclude:
+    - spec/lib/texd/cache_spec.rb # not called on Hash
 
 Style/RedundantFileExtensionInRequire:
   Enabled: true
