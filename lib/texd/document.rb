@@ -6,8 +6,8 @@ module Texd
     attr_reader :attachments
 
     # Shorthand for `new.compile`.
-    def self.compile(template:, locals: {})
-      new.compile(template: template, locals: locals)
+    def self.compile(**kwargs)
+      new.compile(**kwargs)
     end
 
     def initialize
@@ -22,12 +22,15 @@ module Texd
     #   context.
     # @param [Hash, nil] locals will be made available as getter methods in
     #   the template.
+    # @param [String, Boolean] layout to be used. String value name template
+    #   files in `app/views/layouts`, `true` (default) uses the application
+    #   layout, and `false` renders without a layout.
     # @return [Compilation]
-    def compile(template:, locals: {})
+    def compile(template:, locals: {}, layout: true)
       helper_mod = ::Texd.helpers(attachments, locals)
       tex_source = Class.new(ApplicationController) {
         helper helper_mod
-      }.render(template: template, format: :tex)
+      }.render(template: template, format: :tex, layout: layout)
 
       main = attachments.main_input(tex_source)
       Compilation.new(main.name, attachments)

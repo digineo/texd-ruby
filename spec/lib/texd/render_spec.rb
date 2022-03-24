@@ -4,10 +4,9 @@ require "spec_helper"
 
 RSpec.describe Texd do
   describe "#render" do
-    subject(:result) { Texd.render(template: template, locals: locals) }
+    subject(:result) { Texd.render(**render_args) }
 
-    let(:locals)   { nil }
-    let(:template) { "documents/document" }
+    let(:render_args) { { template: "documents/document" } }
 
     it { is_expected.to start_with "%PDF-1." }
 
@@ -16,8 +15,20 @@ RSpec.describe Texd do
       allow(Texd).to receive(:config).and_return(Texd::Configuration.new(**config))
     end
 
+    context "alternative layout" do
+      let(:render_args) { { template: "documents/document", layout: "alternative" } }
+
+      it { is_expected.to start_with "%PDF-1." }
+    end
+
+    context "without layout" do
+      let(:render_args) { { template: "documents/standalone", layout: false } }
+
+      it { is_expected.to start_with "%PDF-1." }
+    end
+
     context "broken input" do
-      let(:template) { "broken/missing" }
+      let(:render_args) { { template: "broken/missing" } }
 
       def expect_compilation_error
         subject
@@ -67,7 +78,7 @@ RSpec.describe Texd do
     end
 
     context "with custom helper" do
-      let(:template) { "my_helper/doc" }
+      let(:render_args) { { template: "my_helper/doc" } }
 
       it "can call helper methods" do
         reconfigure! helpers: Set[Module.new {
@@ -80,8 +91,12 @@ RSpec.describe Texd do
     end
 
     context "with locals" do
-      let(:locals)   { { my_helper_method: "21\\times 2" } }
-      let(:template) { "my_helper/doc" }
+      let(:render_args) {
+        {
+          template: "my_helper/doc",
+          locals:   { my_helper_method: "21\\times 2" },
+        }
+      }
 
       it "can call helper methods" do
         is_expected.to start_with "%PDF-1."

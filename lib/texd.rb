@@ -119,12 +119,15 @@ module Texd
   #   context.
   # @param [Hash, nil] locals will be made available as getter methods in
   #   the template.
+  # @param [String, Boolean] layout to be used. String value name template
+  #   files in `app/views/layouts`, `true` (default) uses the application
+  #   layout, and `false` renders without a layout.
   # @raise [Texd::Client::ResponseError] on input and queue errors. Also on
   #   compilation errors, if Texd.config.error_format is set to JSON.
   # @raise [Texd::Error] on other Texd related errors.
   # @return [String] the PDF object
-  def render(template:, locals: {})
-    doc = Document.compile(template: template, locals: locals)
+  def render(template:, locals: {}, layout: true)
+    doc = Document.compile(template: template, locals: locals, layout: layout)
 
     client.render doc.to_upload_ios,
       input: doc.main_input_name
