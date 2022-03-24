@@ -63,23 +63,23 @@ RSpec.describe Texd::Cache do
     end
   end
 
-  describe "#lookup" do
+  describe "#fetch" do
     it "block is evaluated once" do
-      one = cache.lookup(:same_key) { 1 }
-      two = cache.lookup(:same_key) { 2 }
+      one = cache.fetch(:same_key) { 1 }
+      two = cache.fetch(:same_key) { 2 }
       expect(cache.count).to eq 1
       expect([one, two]).to match [1, 1]
     end
 
     it "fills the cache" do
-      cache.lookup(:one) { 1 }
-      cache.lookup(:two) { 2 }
-      cache.lookup(:three) { 3 }
+      cache.fetch(:one) { 1 }
+      cache.fetch(:two) { 2 }
+      cache.fetch(:three) { 3 }
       expect(cache.count).to eq 3
       expect(cache.keys).to include(:one, :two, :three)
 
-      cache.lookup(:four) { 4 }
-      cache.lookup(:two) { 2 }
+      cache.fetch(:four) { 4 }
+      cache.fetch(:two) { 2 }
       expect(cache.count).to eq 3
       expect(cache.keys).to include(:two, :three, :four)
     end

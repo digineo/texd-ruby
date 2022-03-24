@@ -214,7 +214,7 @@ module Texd
       # @api private
       def create_checksum
         key = [::File.stat(absolute_path).mtime, absolute_path]
-        self.class.cache.lookup(key) do
+        self.class.cache.fetch(key) do
           digest  = Digest::SHA256.file(absolute_path).digest
           encoded = Base64.urlsafe_encode64(digest)
           "sha256:#{encoded}"

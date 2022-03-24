@@ -53,7 +53,7 @@ module Texd
       @capacity = capacity
     end
 
-    def lookup(key)
+    def fetch(key)
       read(key) || write(key, yield)
     end
 
