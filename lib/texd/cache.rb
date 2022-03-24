@@ -42,7 +42,8 @@ module Texd
       end
     end
 
-    attr_reader :list, :hash, :count, :capacity
+    attr_reader :list, :count, :capacity
+    delegate :keys, to: :@hash
 
     def initialize(capacity)
       @list     = LinkedList.new
@@ -58,7 +59,7 @@ module Texd
 
     def read(key)
       @mtx.synchronize do
-        node = hash[key]
+        node = @hash[key]
         return unless node
 
         list.remove(node)
@@ -69,7 +70,7 @@ module Texd
 
     def write(key, value)
       @mtx.synchronize do
-        node = hash[key]
+        node = @hash[key]
 
         if node
           list.remove(node)

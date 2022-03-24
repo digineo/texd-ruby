@@ -24,12 +24,12 @@ RSpec.describe Texd::Cache do
     cache.write(:four, "4")
     expect(cache.count).to eq 3
 
-    expect(cache.hash.keys).to include(:two, :three, :four)
+    expect(cache.keys).to include(:two, :three, :four)
 
     cache.read(:two)
     cache.read(:four)
     cache.write(:five, "5")
-    expect(cache.hash.keys).to include(:two, :four, :five)
+    expect(cache.keys).to include(:two, :four, :five)
   end
 
   describe "#write" do
@@ -53,13 +53,13 @@ RSpec.describe Texd::Cache do
       cache.write([1, :a], "1a")
       cache.write([2, :b], "2b")
       cache.write([3, :c], "3c")
-      expect(cache.hash.keys).to include([1, :a], [2, :b], [3, :c])
+      expect(cache.keys).to include([1, :a], [2, :b], [3, :c])
 
       expect(cache.read([2, :b])).to eq "2b"
       expect(cache.read([4, :d])).to be_nil
 
       cache.write([4, :d], "4d")
-      expect(cache.hash.keys).to include([2, :b], [3, :c], [4, :d])
+      expect(cache.keys).to include([2, :b], [3, :c], [4, :d])
     end
   end
 
@@ -76,12 +76,12 @@ RSpec.describe Texd::Cache do
       cache.lookup(:two) { 2 }
       cache.lookup(:three) { 3 }
       expect(cache.count).to eq 3
-      expect(cache.hash.keys).to include(:one, :two, :three)
+      expect(cache.keys).to include(:one, :two, :three)
 
       cache.lookup(:four) { 4 }
       cache.lookup(:two) { 2 }
       expect(cache.count).to eq 3
-      expect(cache.hash.keys).to include(:two, :three, :four)
+      expect(cache.keys).to include(:two, :three, :four)
     end
   end
 end
