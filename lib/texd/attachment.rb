@@ -202,10 +202,8 @@ module Texd
         }
       end
 
-      @cache = Cache.new(128)
-
-      class << self
-        attr_accessor :cache
+      def self.cache
+        @cache ||= Cache.new(128)
       end
 
       # @api private
