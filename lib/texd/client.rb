@@ -109,7 +109,7 @@ module Texd
     end
 
     def decode_response(res)
-      ct   = res["Content-Type"]
+      ct   = res["Content-Type"].to_s
       body = case ct.split(";").first
       when "application/json"
         JSON.parse(res.body)
