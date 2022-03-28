@@ -87,6 +87,7 @@ module Texd
 
       Net::HTTP.start uri.host, uri.port, **request_options(uri) do |http|
         req = yield(uri)
+        req.basic_auth(uri.user, uri.password) if uri.user || uri.password
         decode_response http.request(req)
       end
     end
