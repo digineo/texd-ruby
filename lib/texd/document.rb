@@ -40,6 +40,12 @@ module Texd
       def to_upload_ios(missing_refs: Set.new)
         attachments.to_upload_ios(missing_refs)
       end
+
+      # Convenience accessor for the main input file.
+      # @returns [String] main input file contents
+      def main_input_contents
+        attachments.items.fetch(main_input_name).contents
+      end
     end
   end
 end
