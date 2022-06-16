@@ -105,7 +105,6 @@ module Texd
   #     # Compilation failed and we might have a log in err.logs (only
   #     # Texd.config.error_format is "full" or "condensed").
   #     # Otherwise some details might be available in err.details.
-  #     # have a log in err.details
   #   rescue Texd::Client::InputError => err
   #     # something failed during input file processing. For details see
   #     # err.details
@@ -135,5 +134,8 @@ module Texd
     # retry once with resolved references
     client.render doc.to_upload_ios(missing_refs: err.references),
       input: doc.main_input_name
+  rescue Client::CompilationError => err
+    config.error_handler.call(err, doc)
+    nil
   end
 end

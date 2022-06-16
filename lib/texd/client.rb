@@ -3,6 +3,7 @@
 require "net/http"
 require "net/http/post/multipart"
 require "json"
+require "pp"
 
 module Texd
   class Client
@@ -38,6 +39,20 @@ module Texd
       def initialize(message, details: nil, logs: nil)
         @logs = logs
         super(message, details: details)
+      end
+
+      def write_to(io)
+        io << "Compilation failed: #{message}\n"
+        if details
+          io.print "Details: "
+          PP.pp(details, io)
+        end
+
+        if logs
+          io << "Logs:\n" << logs
+        else
+          io << "Logs: not available"
+        end
       end
     end
 

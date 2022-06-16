@@ -154,6 +154,10 @@ Metrics/BlockLength:
     - spec/**/*.rb
     - config/**/*.rb
 
+Metrics/ClassLength:
+  Exclude:
+    - lib/texd/config.rb
+
 Metrics/ModuleLength:
   CountComments: false  # count full line comments?
 

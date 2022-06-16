@@ -75,6 +75,42 @@ RSpec.describe Texd do
           )
         end
       end
+
+      it "can ignore errors" do
+        reconfigure!(error_format: "condensed", error_handler: "ignore")
+
+        expect { subject }.not_to raise_error
+      end
+
+      it "can log errors" do
+        reconfigure!(error_format: "condensed", error_handler: "stderr")
+
+        expect { subject }.to output(<<~LOG).to_stderr
+          Compilation failed: compilation failed
+          Logs:
+          LaTeX Error: File `missing.tex' not found.
+          Emergency stop.
+        LOG
+      end
+
+      it "can log details" do
+        reconfigure!(error_format: "json", error_handler: "stderr")
+
+        expect {
+          expect(subject).to be_blank
+        }.to output(/Logs: not available/).to_stderr
+      end
+
+      it "can handle errors" do
+        reconfigure!(error_format: "condensed", error_handler: ->(err, doc) {
+          expect(err).to be_kind_of(Texd::Client::CompilationError)
+          expect(doc).to be_kind_of(Texd::Document::Compilation)
+        })
+
+        expect {
+          expect(subject).to be_blank
+        }.not_to raise_error
+      end
     end
 
     context "with custom helper" do

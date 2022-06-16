@@ -27,8 +27,9 @@ module Texd
       read_timeout:   ENV.fetch("TEXD_READ_TIMEOUT", 180),
       write_timeout:  ENV.fetch("TEXD_WRITE_TIMEOUT", 60),
       error_format:   ENV.fetch("TEXD_ERRORS", "full"),
-      tex_engine:     ENV["TEXD_ENGINE"],
-      tex_image:      ENV["TEXD_IMAGE"],
+      error_handler:  ENV.fetch("TEXD_ERROR_HANDLER", "raise"),
+      tex_engine:     ENV.fetch("TEXD_ENGINE", nil),
+      tex_image:      ENV.fetch("TEXD_IMAGE", nil),
       helpers:        Set.new,
       lookup_paths:   [], # Rails.root.join("app/tex") is inserted in railtie.rb
       ref_cache_size: 128,
@@ -39,6 +40,13 @@ module Texd
 
     # Supported error formats.
     ERROR_FORMATS = %w[json full condensed].freeze
+
+    # Default error handlers. One might provide a custom proc, if desired.
+    ERROR_HANDLERS = {
+      "raise"  => proc { |err, _doc| raise err },
+      "stderr" => proc { |err, _doc| err.write_to($stderr) },
+      "ignore" => proc { |_err, _doc| },
+    }.freeze
 
     # Supported TeX engines.
     TEX_ENGINES = %w[xelatex lualatex pdflatex].freeze
@@ -77,6 +85,22 @@ module Texd
     # The default is "full" and can be overriden by the `TEXD_WRITE_TIMEOUT`
     # environment variable.
     attr_reader :error_format
+
+    # This setting defines how to handle Texd::Client::CompilationError errors.
+    #
+    # Supported values are:
+    #
+    # - "raise", which will not process the error,
+    # - "stderr", which will print the error to stderr,
+    # - "ignore", which will silently discard,
+    # - a Proc instance, which will delegate the error handling to it.
+    #
+    # The setter will lookup "raise", "stderr", and "ignore" from ERROR_HANDLERS,
+    # so this attribute will always be of kind Proc.
+    #
+    # The default value is "raise" and can be overridden by the `TEXD_ERROR_HANDLER`
+    # environment variable.
+    attr_reader :error_handler
 
     # This is the selected TeX engine. Supported values are described in
     # TEX_ENGINES.
@@ -163,10 +187,28 @@ module Texd
       val   = val.to_s
 
       unless ERROR_FORMATS.include?(val)
-        raise InvalidConfig.new(nil, got: val, expected: ERROR_FORMATS)
+        raise InvalidConfig.new(nil,
+          option:   :error_format,
+          got:      val,
+          expected: ERROR_FORMATS)
       end
 
       @error_format = val
+    end
+
+    def error_handler=(val)
+      val ||= "raise"
+      val   = ERROR_HANDLERS.fetch(val.to_s, nil) unless val.respond_to?(:call)
+
+      if val
+        @error_handler = val
+        return
+      end
+
+      raise InvalidConfig.new(nil,
+        option:   :error_handler,
+        got:      val,
+        expected: ERROR_HANDLERS.keys + ["a Proc instance"])
     end
 
     def tex_engine=(val)
