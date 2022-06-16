@@ -44,8 +44,8 @@ docs:
 
 .PHONY: texd-docker
 texd-docker:
+	rm -rvf tmp/jobs tmp/refs
 	mkdir -p tmp/jobs tmp/refs
-	rm -vf tmp/jobs/* tmp/refs/*
 	docker run --rm \
 		--name texd-dev \
 		-p 127.0.0.1:2201:2201 \
