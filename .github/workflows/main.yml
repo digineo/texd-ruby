@@ -8,12 +8,16 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    name: Ruby ${{ matrix.ruby }}
+    name: Ruby ${{ matrix.ruby }}/Rails ${{ matrix.rails }}
     strategy:
       matrix:
-        ruby: ['2.7', '3.0', '3.1']
+        ruby:  ['2.7', '3.0', '3.1']
+        rails: ['6.0', '6.1', '7.0']
+
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails-${{ matrix.rails }}
 
     steps:
     - name: Login to Docker Hub
@@ -41,5 +45,21 @@ jobs:
 
         until curl -fs -o/dev/null http://localhost:2201/status; do sleep 2; echo waiting for texd; done
 
-    - name: Run the default task
-      run: make test
+    - name: Run rspec
+      run: bundle exec rake spec
+
+  lint:
+    runs-on: ubuntu-latest
+    name: Rubocop
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "2.7" # minimal supported version
+        bundler-cache: true
+
+    - name: Run rubocop
+      run: bundle exec rake rubocop
