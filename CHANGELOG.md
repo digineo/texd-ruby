@@ -1,6 +1,10 @@
 ## Unreleased
 
-[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.3.2...master)
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.4.0...master)
+
+## v0.4.0
+
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.3.2...v0.4.0)
 
 **Changes**
 
