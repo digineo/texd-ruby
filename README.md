@@ -21,7 +21,7 @@ Install the gem and add to the application's Gemfile by executing:
 
 ## Configuration
 
-Befor you can use texd, you need to tell it where your instance is located.
+Before you can use texd, you need to tell it where your instance is located.
 
 By default, this gem reads the `TEXD_ENDPOINT` environment variable and falls
 back to `http://localhost:2201/render`, should it be empty.
@@ -38,15 +38,18 @@ end
 
 ```rb
 Texd.configure do |config|
-  config.endpoint      = ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/")
-  config.open_timeout  = ENV.fetch("TEXD_OPEN_TIMEOUT", 60)
-  config.read_timeout  = ENV.fetch("TEXD_READ_TIMEOUT", 180)
-  config.write_timeout = ENV.fetch("TEXD_WRITE_TIMEOUT", 60)
-  config.error_format  = ENV.fetch("TEXD_ERRORS", "full")
-  config.tex_engine    = ENV["TEXD_ENGINE"]
-  config.tex_image     = ENV["TEXD_IMAGE"]
-  config.helpers       = []
-  config.lookup_paths  = [] # Rails.root.join("app/tex") is always inserted as first entry
+  config.endpoint       = ENV.fetch("TEXD_ENDPOINT", "http://localhost:2201/")
+  config.open_timeout   = ENV.fetch("TEXD_OPEN_TIMEOUT", 60)
+  config.read_timeout   = ENV.fetch("TEXD_READ_TIMEOUT", 180)
+  config.write_timeout  = ENV.fetch("TEXD_WRITE_TIMEOUT", 60)
+  config.error_format   = ENV.fetch("TEXD_ERRORS", "full")
+  config.error_handler  = ENV.fetch("TEXD_ERROR_HANDLER", "raise")
+  config.tex_engine     = ENV["TEXD_ENGINE"]
+  config.tex_image      = ENV["TEXD_IMAGE"]
+  config.helpers        = []
+  config.lookup_paths   = []
+  config.lookup_paths   = [] # Rails.root.join("app/tex") is always prepended
+  config.ref_cache_size = 128
 end
 ```
 
@@ -173,6 +176,31 @@ end
 All errors inherit from `Texd::Client::RenderError` and should have
 a `details` attribute (a Hash) containing the actual error returned
 from the server.
+
+## Global error reporting
+
+texd can be configured with external error reporting, like Sentry.
+
+This example sends the LaTeX compilation log and compiled main input `.tex`
+file to Sentry:
+
+```ruby
+Texd.configure do |config|
+  config.error_handler = ->(err, doc) {
+    Sentry.set_context "texd", {
+      details: err.details, # if config.error_format == "json"
+      logs:    err.logs,    # otherwise
+    }.compact
+    Sentry.capture_exception(err)
+
+    raise err # re-raise, so that your code can decide further actions
+  }
+end
+```
+
+`config.error_handler` must respond to `call`, and receives the error (an instance
+of `Texd::Client::CompilationError`) and the document context (an instance of
+`Texd::Document::Compilation`).
 
 ## Development
 

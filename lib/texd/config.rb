@@ -82,7 +82,7 @@ module Texd
     #
     # Supported values are described in ERROR_FORMATS.
     #
-    # The default is "full" and can be overriden by the `TEXD_WRITE_TIMEOUT`
+    # The default is "full" and can be overriden by the `TEXD_ERRORS`
     # environment variable.
     attr_reader :error_format
 
