@@ -146,8 +146,8 @@ module Texd
     end
 
     def to_h
-      DEFAULT_CONFIGURATION.keys.each_with_object({}) do |key, hash|
-        hash[key] = public_send(key)
+      DEFAULT_CONFIGURATION.keys.index_with do |key|
+        public_send(key)
       end
     end
 

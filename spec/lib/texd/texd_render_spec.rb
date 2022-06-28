@@ -4,7 +4,7 @@ require "spec_helper"
 
 RSpec.describe Texd do
   describe "#render" do
-    subject(:result) { Texd.render(**render_args) }
+    subject(:result) { described_class.render(**render_args) }
 
     let(:render_args) { { template: "documents/document" } }
 
@@ -15,7 +15,7 @@ RSpec.describe Texd do
       allow(Texd).to receive(:config).and_return(Texd::Configuration.new(**config))
     end
 
-    context "alternative layout" do
+    context "with alternative layout" do
       let(:render_args) { { template: "documents/document", layout: "alternative" } }
 
       it { is_expected.to start_with "%PDF-1." }
@@ -27,12 +27,12 @@ RSpec.describe Texd do
       it { is_expected.to start_with "%PDF-1." }
     end
 
-    context "broken input" do
+    context "with broken input" do
       let(:render_args) { { template: "broken/missing" } }
 
       def expect_compilation_error
         subject
-        expect(nil).to be_a Texd::Client::CompilationError
+        yield nil
       rescue Texd::Client::CompilationError => err
         yield err
       rescue StandardError => err
@@ -40,7 +40,7 @@ RSpec.describe Texd do
       end
 
       it "raises an error" do
-        expect { subject }.to raise_error Texd::Client::CompilationError
+        expect { result }.to raise_error Texd::Client::CompilationError
       end
 
       it "may contain the full log" do
@@ -79,13 +79,13 @@ RSpec.describe Texd do
       it "can ignore errors" do
         reconfigure!(error_format: "condensed", error_handler: "ignore")
 
-        expect { subject }.not_to raise_error
+        expect { result }.not_to raise_error
       end
 
       it "can log errors" do
         reconfigure!(error_format: "condensed", error_handler: "stderr")
 
-        expect { subject }.to output(<<~LOG).to_stderr
+        expect { result }.to output(<<~LOG).to_stderr
           Compilation failed: compilation failed
           Logs:
           LaTeX Error: File `missing.tex' not found.
@@ -97,7 +97,7 @@ RSpec.describe Texd do
         reconfigure!(error_format: "json", error_handler: "stderr")
 
         expect {
-          expect(subject).to be_blank
+          expect(result).to be_blank
         }.to output(/Logs: not available/).to_stderr
       end
 
@@ -113,7 +113,7 @@ RSpec.describe Texd do
         })
 
         expect {
-          expect(subject).to be_blank
+          expect(result).to be_blank
         }.to raise_error ArgumentError, "reraised"
       end
     end
@@ -121,13 +121,17 @@ RSpec.describe Texd do
     context "with custom helper" do
       let(:render_args) { { template: "my_helper/doc" } }
 
-      it "can call helper methods" do
-        reconfigure! helpers: Set[Module.new {
+      let(:my_helper) {
+        Module.new {
           def my_helper_method
             42
           end
-        }]
-        is_expected.to start_with "%PDF-1."
+        }
+      }
+
+      it "can call helper methods" do
+        reconfigure! helpers: Set[my_helper]
+        expect(result).to start_with "%PDF-1."
       end
     end
 
@@ -140,7 +144,7 @@ RSpec.describe Texd do
       }
 
       it "can call helper methods" do
-        is_expected.to start_with "%PDF-1."
+        expect(result).to start_with "%PDF-1."
       end
     end
   end

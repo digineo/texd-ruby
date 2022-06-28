@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe Texd::Cache do
-  subject(:cache) { Texd::Cache.new(3) }
+  subject(:cache) { described_class.new(3) }
 
   it "empty cache" do
     expect(cache.count).to eq 0
-    expect(cache.read(:one)).to eq nil
+    expect(cache.read(:one)).to be_nil
   end
 
-  it "filling cache" do
+  it "filling cache" do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
     cache.write(:one, "1")
     expect(cache.count).to eq 1
     expect(cache.read(:one)).to eq "1"
@@ -34,7 +34,7 @@ RSpec.describe Texd::Cache do
 
   describe "#write" do
     it "returns the value" do
-      [1, :a, "b", Time.now].each do |v|
+      [1, :a, "b", Time.zone.now].each do |v|
         expect(cache.write(:v, v)).to be v
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe Texd::Cache do
     end
   end
 
-  context "arrays as keys" do
+  context "with arrays as keys" do
     it "are allowed" do
       cache.write([1, :a], "1a")
       cache.write([2, :b], "2b")

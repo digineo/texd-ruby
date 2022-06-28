@@ -4,7 +4,7 @@ require "spec_helper"
 
 RSpec.describe Texd::LookupContext do
   describe "#render" do
-    subject(:ctx) { Texd::LookupContext.new(paths) }
+    subject(:ctx) { described_class.new(paths) }
 
     let(:paths) { [] }
 

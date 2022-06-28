@@ -13,5 +13,5 @@ begin
   task default: %i[spec rubocop]
 rescue LoadError
   # we're likely running `make test`
-  task default: :spec
+  task default: :spec # rubocop:disable Rake/DuplicateTask
 end

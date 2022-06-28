@@ -329,3 +329,18 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
+## RSpec Cops - https://docs.rubocop.org/rubocop-rspec/cops_rspec.html
+
+RSpec/ExampleLength:
+  Max: 10
+  CountAsOne: [array, hash, heredoc]
+
+RSpec/ExpectActual:
+  Exclude:
+  - spec/lib/texd/lookup_context_spec.rb # creative use of expect(...) with custom matcher
+
+RSpec/MultipleExpectations:
+  Max: 6
+
+RSpec/NestedGroups:
+  Max: 5
