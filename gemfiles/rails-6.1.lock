@@ -1,7 +1,7 @@
 PATH
   remote: ..
   specs:
-    texd (0.4.1)
+    texd (0.4.2)
       multipart-post (~> 2.0)
       rails (>= 6.0, < 8)
 
