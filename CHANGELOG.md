@@ -1,6 +1,14 @@
 ## Unreleased
 
-[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.4.1...master)
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.4.2...master)
+
+## v0.4.2 - 2022-06-16
+
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.4.1...v0.4.2)
+
+**Changes**
+
+- fix deprecation warning ("constant ::UploadIO is deprecated")
 
 ## v0.4.1 - 2022-06-16
 

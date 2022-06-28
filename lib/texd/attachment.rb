@@ -132,7 +132,7 @@ module Texd
 
     Dynamic = Struct.new(:name, :contents) do
       def to_upload_io(**)
-        UploadIO.new(StringIO.new(contents), nil, name).tap { |io|
+        Multipart::Post::UploadIO.new(StringIO.new(contents), nil, name).tap { |io|
           io.instance_variable_set :@original_filename, name
         }
       end
@@ -177,7 +177,7 @@ module Texd
     class File < Base
       # @api private
       def to_upload_io(**)
-        UploadIO.new(absolute_path.open("rb"), nil, name).tap { |io|
+        Multipart::Post::UploadIO.new(absolute_path.open("rb"), nil, name).tap { |io|
           io.instance_variable_set :@original_filename, name
         }
       end
@@ -197,7 +197,7 @@ module Texd
         f  = full ? absolute_path.open("rb") : StringIO.new(checksum)
         ct = full ? STORE_REF                : USE_REF
 
-        UploadIO.new(f, ct, name).tap { |io|
+        Multipart::Post::UploadIO.new(f, ct, name).tap { |io|
           io.instance_variable_set :@original_filename, name
         }
       end
