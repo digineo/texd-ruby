@@ -36,7 +36,7 @@ update:
 
 .PHONY: rubocop
 rubocop:
-	export BUNDLE_GEMFILE=Gemfile && bundle --quiet && bundle exec rake rubocop:auto_correct
+	export BUNDLE_GEMFILE=Gemfile && bundle --quiet && bundle exec rake rubocop:autocorrect
 
 .PHONY: docs
 docs:
