@@ -27,7 +27,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -54,7 +54,7 @@ jobs:
     name: Rubocop
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
