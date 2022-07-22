@@ -2,6 +2,10 @@
 
 [Compare changes](https://github.com/digineo/texd-ruby/compare/v0.4.2...master)
 
+**Changes**
+
+- add support for inline files: `<%= texd_inline "contents\n", "filename.txt" %>`
+
 ## v0.4.2 - 2022-06-16
 
 [Compare changes](https://github.com/digineo/texd-ruby/compare/v0.4.1...v0.4.2)

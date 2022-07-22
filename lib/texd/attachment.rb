@@ -53,6 +53,33 @@ module Texd
       add(Attachment::File, path, rename)
     end
 
+    # Includes a file with the given `content` to the list. This is useful
+    # if you generate the content on-the-fly (like creating CSV data from
+    # database records), and don't want to save that content to disk first.
+    #
+    # In short, these examples should be mostly equivalent:
+    #
+    #     # use a temporary file to write contents to, and attach that file:
+    #     tmp = Tempfile.new ["foo", ".csv"]
+    #     tmp.write @record.to_csv
+    #     tmp.flush
+    #     tmp.close
+    #     text_attach tmp.name
+    #
+    #     # skip writing to disk and inline the file:
+    #     texd_inline @record.to_csv, "foo.csv"
+    #
+    # @param [<Type>] contents <description>
+    # @param [<Type>] path <description>
+    #
+    # @return [<Type>] <description>
+    def inline(contents, path)
+      att = Attachment::Dynamic.new(path, contents)
+
+      items[att.name] ||= att
+      items[att.name]
+    end
+
     # Adds a file reference with the given path to the list. Similar to #attach,
     # the file path must either be an absolute filename or be relative to
     # app/tex/ of the host application.
@@ -130,11 +157,32 @@ module Texd
       end
     end
 
+    # Computes the file name of a given path, and returns it with or without
+    # file extension.
+    #
+    # @param [String, Pathname] path A Pathname instance or just a plain file name.
+    # @param [Boolean] with_extension If true, returns the file path's basename
+    #   unmodified, otherwise the file extension, including its ".", is removed.
+    # @return [String] File path with or without extension.
+    def self.name(path, with_extension = true) # rubocop:disable Style/OptionalBooleanParameter
+      basename = ::File.basename(path)
+      return basename if with_extension
+
+      dot = basename.rindex(".")
+      return basename if dot == 0 # file starts with "."
+
+      basename.slice(0, dot)
+    end
+
     Dynamic = Struct.new(:name, :contents) do
       def to_upload_io(**)
         Multipart::Post::UploadIO.new(StringIO.new(contents), nil, name).tap { |io|
           io.instance_variable_set :@original_filename, name
         }
+      end
+
+      def name(with_extension = true) # rubocop:disable Style/OptionalBooleanParameter
+        Attachment.name(self[:name], with_extension)
       end
     end
 
@@ -164,13 +212,7 @@ module Texd
       # @param [Boolean] with_extension
       # @return [String] output file name
       def name(with_extension = true) # rubocop:disable Style/OptionalBooleanParameter
-        basename = ::File.basename(@name)
-        return basename if with_extension
-
-        dot = basename.rindex(".")
-        return basename if dot == 0 # file starts with "."
-
-        basename.slice(0, dot)
+        Attachment.name(@name, with_extension)
       end
     end
 

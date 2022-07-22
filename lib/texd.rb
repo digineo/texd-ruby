@@ -80,6 +80,10 @@ module Texd
         attachments.attach(path, rename).name(with_extension)
       end
 
+      define_method :texd_inline do |data, name, with_extension: true|
+        attachments.inline(data, name).name(with_extension)
+      end
+
       define_method :texd_reference do |path, rename: true, with_extension: true|
         attachments.reference(path, rename).name(with_extension)
       end
