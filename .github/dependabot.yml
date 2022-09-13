@@ -17,7 +17,7 @@ updates:
       timezone: "Europe/Berlin"
     ignore:
       - dependency-name: "rails"
-        update-type: # keep only patch level
+        update-types: # keep only patch level
           - version-update:semver-major
           - version-update:semver-minor
 
@@ -29,7 +29,7 @@ updates:
       timezone: "Europe/Berlin"
     ignore:
       - dependency-name: "rails"
-        update-type: # keep only patch level
+        update-types: # keep only patch level
           - version-update:semver-major
           - version-update:semver-minor
 
@@ -41,7 +41,7 @@ updates:
       timezone: "Europe/Berlin"
     ignore:
       - dependency-name: "rails"
-        update-type: # keep only patch level
+        update-types: # keep only patch level
           - version-update:semver-major
           - version-update:semver-minor
 
