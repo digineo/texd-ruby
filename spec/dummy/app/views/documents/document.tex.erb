@@ -25,3 +25,5 @@ This document is for testing purposes!
 \includegraphics[width=1cm]{<%= texd_reference "signature.png" %>}
 
 \input{<%= texd_inline "a,b\n1,2\n", "sample.csv" %>}
+
+\includegraphics[width=1cm]{<%= texd_inline Rails.root.join("../fixtures/1x1.png").read, "image.png" %>}
