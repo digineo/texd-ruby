@@ -1,3 +1,8 @@
+require:
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+
 AllCops:
   DisplayCopNames: true
   StyleGuideCopsOnly: false
@@ -330,6 +335,11 @@ Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
 ## RSpec Cops - https://docs.rubocop.org/rubocop-rspec/cops_rspec.html
+
+RSpec:
+  Language:
+    Expectations:
+      - expect_escape
 
 RSpec/ExampleLength:
   Max: 10

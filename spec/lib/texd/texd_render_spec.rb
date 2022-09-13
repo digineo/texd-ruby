@@ -103,8 +103,8 @@ RSpec.describe Texd do
 
       it "can handle errors" do
         reconfigure!(error_format: "condensed", error_handler: ->(err, doc) {
-          expect(err).to be_kind_of(Texd::Client::CompilationError)
-          expect(doc).to be_kind_of(Texd::Document::Compilation)
+          expect(err).to be_a(Texd::Client::CompilationError)
+          expect(doc).to be_a(Texd::Document::Compilation)
 
           expect(err.logs).to include "File `missing.tex' not found"
           expect(doc.main_input_contents).to include "\\input{missing}"
