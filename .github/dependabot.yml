@@ -6,12 +6,40 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "08:30"
+      time:     "08:30"
+      timezone: "Europe/Berlin"
+
+  - package-ecosystem: "bundler"
+    directory: "/gemfiles/rails-6.0"
+    schedule:
+      interval: "daily"
+      time:     "08:30"
+      timezone: "Europe/Berlin"
+
+  - package-ecosystem: "bundler"
+    directory: "/gemfiles/rails-6.1"
+    schedule:
+      interval: "daily"
+      time:     "08:30"
+      timezone: "Europe/Berlin"
+
+  - package-ecosystem: "bundler"
+    directory: "/gemfiles/rails-7.0"
+    schedule:
+      interval: "daily"
+      time:     "08:30"
+      timezone: "Europe/Berlin"
+
+  - package-ecosystem: "bundler"
+    directory: "/gemfiles/rails-main"
+    schedule:
+      interval: "weekly" # volatile, avoid daily PRs
+      time:     "08:30"
       timezone: "Europe/Berlin"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-      time: "08:30"
+      time:     "08:30"
       timezone: "Europe/Berlin"
