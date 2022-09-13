@@ -1,38 +1,44 @@
 SPEC =
 
 .PHONY: test
-test: rails60 rails61 rails70 rubocop
+test: rails-6.0 rails-6.1 rails-7.0 rubocop
 
-.PHONY: rails60
-rails60:
+# TODO: make rails-* tasks DRY?
+
+.PHONY: rails-6.0
+rails-6.0:
 ifeq ($(SPEC),)
-	export BUNDLE_GEMFILE=gemfiles/rails-6.0 && bundle --quiet && bundle exec rake spec
+	export BUNDLE_GEMFILE=gemfiles/rails-6.0/Gemfile && bundle --quiet && bundle exec rake spec
 else
-	export BUNDLE_GEMFILE=gemfiles/rails-6.0 && bundle --quiet && bundle exec rspec $(SPEC)
+	export BUNDLE_GEMFILE=gemfiles/rails-6.0/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
 endif
 
-.PHONY: rails61
-rails61:
+.PHONY: rails-6.1
+rails-6.1:
 ifeq ($(SPEC),)
-	export BUNDLE_GEMFILE=gemfiles/rails-6.1 && bundle --quiet && bundle exec rake spec
+	export BUNDLE_GEMFILE=gemfiles/rails-6.1/Gemfile && bundle --quiet && bundle exec rake spec
 else
-	export BUNDLE_GEMFILE=gemfiles/rails-6.1 && bundle --quiet && bundle exec rspec $(SPEC)
+	export BUNDLE_GEMFILE=gemfiles/rails-6.1/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
 endif
 
-.PHONY: rails70
-rails70:
+.PHONY: rails-7.0
+rails-7.0:
 ifeq ($(SPEC),)
-	export BUNDLE_GEMFILE=gemfiles/rails-7.0 && bundle --quiet && bundle exec rake spec
+	export BUNDLE_GEMFILE=gemfiles/rails-7.0/Gemfile && bundle --quiet && bundle exec rake spec
 else
-	export BUNDLE_GEMFILE=gemfiles/rails-7.0 && bundle --quiet && bundle exec rspec $(SPEC)
+	export BUNDLE_GEMFILE=gemfiles/rails-7.0/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
+endif
+
+ifeq ($(SPEC),)
+else
 endif
 
 .PHONY: update
 update:
-	export BUNDLE_GEMFILE=gemfiles/rails-6.0 && bundle update
-	export BUNDLE_GEMFILE=gemfiles/rails-6.1 && bundle update
-	export BUNDLE_GEMFILE=gemfiles/rails-7.0 && bundle update
-	export BUNDLE_GEMFILE=Gemfile            && bundle update
+	export BUNDLE_GEMFILE=gemfiles/rails-6.0/Gemfile  && bundle update
+	export BUNDLE_GEMFILE=gemfiles/rails-6.1/Gemfile  && bundle update
+	export BUNDLE_GEMFILE=gemfiles/rails-7.0/Gemfile  && bundle update
+	export BUNDLE_GEMFILE=Gemfile                     && bundle update
 
 .PHONY: rubocop
 rubocop:

@@ -17,7 +17,7 @@ jobs:
         rails: ['6.0', '6.1', '7.0']
 
     env:
-      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails-${{ matrix.rails }}
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails-${{ matrix.rails }}/Gemfile
 
     steps:
     - name: Login to Docker Hub

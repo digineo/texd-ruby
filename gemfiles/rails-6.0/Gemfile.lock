@@ -1,5 +1,5 @@
 PATH
-  remote: ..
+  remote: ../..
   specs:
     texd (0.5.0)
       multipart-post (~> 2.0)
