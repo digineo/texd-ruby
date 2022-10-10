@@ -1,6 +1,17 @@
 ## Unreleased
 
-[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.5.0...master)
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.5.1...master)
+
+## v0.5.1 - 2022-10-10
+
+**Changes**
+
+This is a maintenance release. Expect full compatability with v0.5.0.
+
+- update dependencies
+- add specs for rails/main
+
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.5.0...v0.5.1)
 
 ## v0.5.0 - 2022-07-22
 
