@@ -3,7 +3,6 @@
 require "net/http"
 require "net/http/post/multipart"
 require "json"
-require "pp"
 
 module Texd
   class Client
