@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 2612b88abfca6ac80db1923e133d5e7822bcef0b
+  revision: 45eceb2744ce141d9251ba2ca57c3a667b009247
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -183,7 +183,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.5)
 
 PLATFORMS
   x86_64-linux
