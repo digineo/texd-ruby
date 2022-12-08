@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 87bfded6fd0b55d38f7ada5ffa4a4d5bed615604
+  revision: 51e9fa9bf9701672bc45ab6da4f39212af39db59
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -87,7 +87,6 @@ GIT
     railties (7.1.0.alpha)
       actionpack (= 7.1.0.alpha)
       activesupport (= 7.1.0.alpha)
-      method_source
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.6)
@@ -135,7 +134,7 @@ GEM
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.0)
+    net-protocol (0.2.1)
       timeout
     net-smtp (0.3.3)
       net-protocol
@@ -180,7 +179,7 @@ GEM
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
     thor (1.2.1)
-    timeout (0.3.0)
+    timeout (0.3.1)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.5)
