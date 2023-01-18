@@ -190,7 +190,7 @@ PLATFORMS
 DEPENDENCIES
   combustion
   pry-byebug
-  rails (~> 6.0.0)
+  rails (~> 6.0.6)
   rake (~> 13.0)
   rspec (~> 3.0)
   rspec-rails
