@@ -5,3 +5,5 @@ gemspec path: "../.."
 
 gem "pry-byebug"
 gem "rails", github: "rails/rails", branch: "main"
+
+eval File.read File.join(__dir__, "../common.rb") # rubocop:disable Security/Eval

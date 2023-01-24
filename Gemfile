@@ -14,3 +14,5 @@ group :development do
   gem "rubocop-rake"
   gem "rubocop-rspec"
 end
+
+eval File.read File.join(__dir__, "gemfiles/common.rb") # rubocop:disable Security/Eval
