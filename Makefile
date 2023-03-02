@@ -1,7 +1,13 @@
 SPEC =
 
 .PHONY: test
-test: rails-6.0 rails-6.1 rails-7.0 rubocop # exclude rails-main
+test: test-stable rubocop
+
+.PHONY: test-stable
+test-stable: rails-6.0 rails-6.1 rails-7.0
+
+.PHONY: test-all
+test-all: test-all rails-main
 
 # TODO: make rails-* tasks DRY?
 
