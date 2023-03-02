@@ -15,4 +15,10 @@ group :development do
   gem "rubocop-rspec"
 end
 
-eval File.read File.join(__dir__, "gemfiles/common.rb") # rubocop:disable Security/Eval
+# keep in sync with gemfiles/*/Gemfile
+group :development, :test do
+  gem "combustion"
+  gem "rake", "~> 13.0"
+  gem "rspec", "~> 3.0"
+  gem "rspec-rails"
+end

@@ -6,4 +6,11 @@ gemspec path: "../.."
 gem "pry-byebug"
 gem "rails", "~> 6.1.7"
 
-eval File.read File.join(__dir__, "../common.rb") # rubocop:disable Security/Eval
+# keep in sync with ../../Gemfile
+group :development, :test do
+  gem "combustion"
+  gem "rake", "~> 13.0"
+  gem "rspec", "~> 3.0"
+  gem "rspec-rails"
+end
+
