@@ -7,7 +7,7 @@ test: test-stable rubocop
 test-stable: rails-6.0 rails-6.1 rails-7.0
 
 .PHONY: test-all
-test-all: test-all rails-main
+test-all: test rails-main
 
 # TODO: make rails-* tasks DRY?
 

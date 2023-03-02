@@ -8,7 +8,7 @@
 /tmp/
 
 # rspec failure tracking
-.rspec_status
+.rspec_status.*
 
 # Ruby version managers
 .ruby-*
