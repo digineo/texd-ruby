@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: e78ed07e008676752b2ed2cff97e74b31ffacaf5
+  revision: 09f5d816a2b7a7828eca58c0c94682ae63d294bf
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -132,7 +132,7 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.17.0)
+    minitest (5.18.0)
     multipart-post (2.3.0)
     net-imap (0.3.4)
       date
@@ -153,7 +153,7 @@ GEM
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
     racc (1.6.2)
-    rack (3.0.4.1)
+    rack (3.0.4.2)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.0.2)
