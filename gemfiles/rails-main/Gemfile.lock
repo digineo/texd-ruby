@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: d0d9e8e576b06c19f850751001d19efadf81df73
+  revision: 6c12baf30fcadc518f7d9d6503d13bc48a79299d
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -89,6 +89,7 @@ GIT
     railties (7.1.0.alpha)
       actionpack (= 7.1.0.alpha)
       activesupport (= 7.1.0.alpha)
+      irb
       rackup (>= 1.0.0)
       rake (>= 12.2)
       thor (~> 1.0)
@@ -121,6 +122,9 @@ GEM
       activesupport (>= 5.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    io-console (0.6.0)
+    irb (1.6.3)
+      reline (>= 0.3.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -153,7 +157,7 @@ GEM
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
     racc (1.6.2)
-    rack (3.0.4.2)
+    rack (3.0.6)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.0.2)
@@ -167,6 +171,8 @@ GEM
     rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
     rake (13.0.6)
+    reline (0.3.2)
+      io-console (~> 0.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
