@@ -215,8 +215,9 @@ push git commits and the created tag, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
 
 You may want to run a texd server instance locally. This is easiest done by
-calling either `make texd-server` (this requires Docker). If you need to
-develop/test against the bleeding edge, you can clone and run texd from source:
+calling `make texd-docker` (which pulls and runs the `ghcr.io/digineo/texd` Docker
+image). If you need to develop/test against the bleeding edge, you can clone and
+run texd from source:
 
 ```console
 $ cd ~/code/github.com/digineo

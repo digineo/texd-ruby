@@ -69,7 +69,7 @@ texd-docker:
 		-v $$(pwd)/tmp/jobs:/texd \
 		-v $$(pwd)/tmp/refs:/refs \
 		-u $$(id -u):$$(id -g) \
-		digineode/texd \
+		ghcr.io/digineo/texd \
 			--reference-store dir:///refs \
 			--retention-policy=purge-on-start \
 			--keep-jobs always
