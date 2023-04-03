@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 99096b88ae7a7c9019f2cbcf867e29ba42768e65
+  revision: 6c43ebc220428ce9fc9569c2e5df90a38a4fc4e4
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -65,7 +65,6 @@ GIT
       activerecord (= 7.1.0.alpha)
       activesupport (= 7.1.0.alpha)
       marcel (~> 1.0)
-      mini_mime (>= 1.1.0)
     activesupport (7.1.0.alpha)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       connection_pool (>= 2.2.5)
@@ -125,7 +124,7 @@ GEM
     io-console (0.6.0)
     irb (1.6.3)
       reline (>= 0.3.0)
-    loofah (2.19.1)
+    loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.8.1)
@@ -147,7 +146,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     pry (0.14.2)
@@ -171,7 +170,7 @@ GEM
     rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
     rake (13.0.6)
-    reline (0.3.2)
+    reline (0.3.3)
       io-console (~> 0.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
