@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 6c43ebc220428ce9fc9569c2e5df90a38a4fc4e4
+  revision: b6e417641e90a8cd8a1ae3debd81680a8fd3d073
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -122,7 +122,7 @@ GEM
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.6.3)
+    irb (1.6.4)
       reline (>= 0.3.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
