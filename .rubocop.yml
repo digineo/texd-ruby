@@ -304,6 +304,9 @@ Style/RedundantFetchBlock:
 Style/RedundantFileExtensionInRequire:
   Enabled: true
 
+Style/RedundantLineContinuation:
+  Enabled: false # https://github.com/rubocop/rubocop/pull/11752
+
 Style/RedundantRegexpCharacterClass:
   Enabled: true
 
