@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 628cdf9e9cf54145cca716eb2f80dc04ef66f2f2
+  revision: 4f70750c076715fe4a474f0295bc0d8a849ba0a7
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -155,7 +155,7 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
-    racc (1.6.2)
+    racc (1.7.0)
     rack (3.0.7)
     rack-session (2.0.0)
       rack (>= 3.0.0)
