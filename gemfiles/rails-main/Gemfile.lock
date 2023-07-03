@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: f1cdfc037f9bd987e958b5844a0cf496b32236e0
+  revision: 5694f1ec0305e1946f6505257c596d4d6be9c4e4
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -122,7 +122,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.7.0)
+    irb (1.7.1)
       reline (>= 0.3.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -164,8 +164,9 @@ GEM
     rackup (2.1.0)
       rack (>= 3)
       webrick (~> 1.8)
-    rails-dom-testing (2.0.3)
-      activesupport (>= 4.2.0)
+    rails-dom-testing (2.1.1)
+      activesupport (>= 5.0.0)
+      minitest
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
