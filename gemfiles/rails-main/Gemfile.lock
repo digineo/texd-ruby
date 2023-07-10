@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 5694f1ec0305e1946f6505257c596d4d6be9c4e4
+  revision: a5fc471b3f4bbd02e6be38dae023526a49e7d049
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -147,7 +147,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.2-x86_64-linux)
+    nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -172,7 +172,7 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rake (13.0.6)
-    reline (0.3.5)
+    reline (0.3.6)
       io-console (~> 0.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
