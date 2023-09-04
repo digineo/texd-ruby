@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 0d46f69db53ccf36687b2a228ed5efb19d258389
+  revision: 8271186d012c5e9ca11e0a38d8acd4b2e9623270
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -126,12 +126,13 @@ GEM
     drb (2.1.1)
       ruby2_keywords
     erubi (1.12.0)
-    globalid (1.1.0)
-      activesupport (>= 5.0)
+    globalid (1.2.0)
+      activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.7.4)
+    irb (1.8.0)
+      rdoc (~> 6.5)
       reline (>= 0.3.6)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -165,6 +166,8 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
+    psych (5.1.0)
+      stringio
     racc (1.7.1)
     rack (3.0.8)
     rack-session (2.0.0)
@@ -182,6 +185,8 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rake (13.0.6)
+    rdoc (6.5.0)
+      psych (>= 4.0.0)
     reline (0.3.8)
       io-console (~> 0.5)
     rspec (3.12.0)
@@ -206,6 +211,7 @@ GEM
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
     ruby2_keywords (0.0.5)
+    stringio (3.0.8)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
