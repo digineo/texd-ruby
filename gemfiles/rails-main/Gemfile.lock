@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a967d355c6fee9ad9b8bd115d43bc8b0fc207e7e
+  revision: e35e78020f27836a53f5e54ada1c3e63aed2cd4f
   branch: main
   specs:
     actioncable (7.1.0.beta1)
@@ -155,7 +155,7 @@ GEM
       net-protocol
     net-protocol (0.2.1)
       timeout
-    net-smtp (0.3.3)
+    net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.4-x86_64-linux)
