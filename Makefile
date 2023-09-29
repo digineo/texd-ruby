@@ -7,7 +7,7 @@ test: test-stable rubocop
 test-stable: rails-6.0 rails-6.1 rails-7.0
 
 .PHONY: test-all
-test-all: test rails-main
+test-all: test rails-7.1 rails-main
 
 # TODO: make rails-* tasks DRY?
 
@@ -35,6 +35,14 @@ else
 	export BUNDLE_GEMFILE=gemfiles/rails-7.0/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
 endif
 
+.PHONY: rails-7.1
+rails-7.1:
+ifeq ($(SPEC),)
+	export BUNDLE_GEMFILE=gemfiles/rails-7.1/Gemfile && bundle --quiet && bundle exec rake spec
+else
+	export BUNDLE_GEMFILE=gemfiles/rails-7.1/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
+endif
+
 .PHONY: rails-main
 rails-main:
 ifeq ($(SPEC),)
@@ -48,6 +56,7 @@ update:
 	export BUNDLE_GEMFILE=gemfiles/rails-6.0/Gemfile  && bundle update
 	export BUNDLE_GEMFILE=gemfiles/rails-6.1/Gemfile  && bundle update
 	export BUNDLE_GEMFILE=gemfiles/rails-7.0/Gemfile  && bundle update
+	export BUNDLE_GEMFILE=gemfiles/rails-7.1/Gemfile  && bundle update
 	export BUNDLE_GEMFILE=gemfiles/rails-main/Gemfile && bundle update
 	export BUNDLE_GEMFILE=Gemfile                     && bundle update
 
