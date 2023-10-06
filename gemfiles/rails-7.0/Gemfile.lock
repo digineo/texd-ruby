@@ -103,7 +103,7 @@ GEM
     mini_portile2 (2.8.4)
     minitest (5.20.0)
     multipart-post (2.3.0)
-    net-imap (0.3.7)
+    net-imap (0.4.0)
       date
       net-protocol
     net-pop (0.1.2)
@@ -194,7 +194,7 @@ PLATFORMS
 DEPENDENCIES
   combustion
   pry-byebug
-  rails (~> 7.0)
+  rails (~> 7.0.8)
   rake (~> 13.0)
   rspec (~> 3.0)
   rspec-rails
