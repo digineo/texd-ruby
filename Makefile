@@ -4,10 +4,10 @@ SPEC =
 test: test-stable rubocop
 
 .PHONY: test-stable
-test-stable: rails-6.0 rails-6.1 rails-7.0
+test-stable: rails-6.0 rails-6.1 rails-7.0 rails-7.1
 
 .PHONY: test-all
-test-all: test rails-7.1 rails-main
+test-all: test rails-main
 
 # TODO: make rails-* tasks DRY?
 
