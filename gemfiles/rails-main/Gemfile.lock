@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: bbf4fc9efbb4db47ddbcc0ac5e1e9968cda10c27
+  revision: ae6fa7a048d0a0f79b0f8dd8566c7d499fd6f616
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -131,7 +131,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.8.1)
+    irb (1.8.3)
       rdoc
       reline (>= 0.3.8)
     loofah (2.21.4)
@@ -166,7 +166,7 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
-    psych (5.1.1)
+    psych (5.1.1.1)
       stringio
     racc (1.7.1)
     rack (3.0.8)
