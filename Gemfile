@@ -18,7 +18,7 @@ end
 # keep in sync with gemfiles/*/Gemfile
 group :development, :test do
   gem "combustion"
-  gem "rake", "~> 13.0"
+  gem "rake", "~> 13.1"
   gem "rspec", "~> 3.0"
   gem "rspec-rails"
 end
