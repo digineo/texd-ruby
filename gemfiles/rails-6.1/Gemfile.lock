@@ -97,7 +97,7 @@ GEM
     mini_portile2 (2.8.5)
     minitest (5.20.0)
     multipart-post (2.3.0)
-    net-imap (0.4.5)
+    net-imap (0.4.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -106,7 +106,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.6.0)
+    nio4r (2.6.1)
     nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -163,7 +163,7 @@ GEM
     rspec-mocks (3.12.6)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-rails (6.0.3)
+    rspec-rails (6.1.0)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       railties (>= 6.1)
