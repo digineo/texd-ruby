@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: f4b08457a4ab40418da9aa2155880fea32caf0fe
+  revision: 89d8569abe2564c8187debf32dd3b4e33d6ad983
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -131,7 +131,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.9.1)
+    irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
     loofah (2.22.0)
@@ -147,7 +147,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     multipart-post (2.3.0)
-    net-imap (0.4.6)
+    net-imap (0.4.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -156,7 +156,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.6.1)
+    nio4r (2.7.0)
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
     pry (0.14.2)
@@ -184,9 +184,9 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rake (13.1.0)
-    rdoc (6.6.0)
+    rdoc (6.6.1)
       psych (>= 4.0.0)
-    reline (0.4.0)
+    reline (0.4.1)
       io-console (~> 0.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -210,7 +210,7 @@ GEM
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
     ruby2_keywords (0.0.5)
-    stringio (3.0.9)
+    stringio (3.1.0)
     thor (1.3.0)
     timeout (0.4.1)
     tzinfo (2.0.6)
