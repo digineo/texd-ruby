@@ -334,6 +334,9 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
+Style/SuperWithArgsParentheses:
+  Enabled: false # cop doesn't provide a preferred style option
+
 ## RSpec Cops - https://docs.rubocop.org/rubocop-rspec/cops_rspec.html
 
 RSpec:
