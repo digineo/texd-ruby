@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 5b62994778d197b26185472bbe94b6086760789d
+  revision: ad2354e6c6fc12134c240b7af16169624f365f87
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -39,6 +39,7 @@ GIT
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+      useragent (~> 0.16)
     actiontext (7.2.0.alpha)
       actionpack (= 7.2.0.alpha)
       activerecord (= 7.2.0.alpha)
@@ -215,6 +216,7 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    useragent (0.16.10)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)

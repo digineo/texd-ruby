@@ -227,6 +227,10 @@ $ mkdir -p tmp/refs
 $ make run-container EXTRA_RUN_ARGS='--reference-store dir://./tmp/refs'
 ```
 
+Note: In order to run the tests against the latest `rails/main` commit, you
+need to have Ruby 3.1+ installed. To run the tests against all released Rails
+versions, Ruby 2.7 currently suffices.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/digineo/texd.
