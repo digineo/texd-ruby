@@ -10,7 +10,7 @@ in background jobs.
 
 You need to meet the following requirements for this gem to work:
 
-- Ruby 2.7 or later
+- Ruby 2.7 or later[^1]
 - Rails 6.0 or later
 
 Older versions of Ruby and Rails *may* work, but this is not guaranteed.
@@ -18,6 +18,11 @@ Older versions of Ruby and Rails *may* work, but this is not guaranteed.
 Install the gem and add to the application's Gemfile by executing:
 
     $ bundle add texd
+
+[^1]: We're currently tracking the Ruby version shipped with
+  [Ubuntu Focal (20.04 LTS)](https://packages.ubuntu.com/focal/ruby).
+  This may jump to [Ubuntu Noble (24.04 LTS)](https://packages.ubuntu.com/noble/ruby)
+  and Ruby 3.1 in the near future.
 
 ## Configuration
 
