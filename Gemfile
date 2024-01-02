@@ -5,6 +5,7 @@ gemspec
 
 gem "pry-byebug"
 gem "rails", "~> 7.0"
+gem "nokogiri", "~> 1.15.5" # remove constraint when min. RUBY_VERSION >= 3
 
 gem "yard", group: :docs
 
