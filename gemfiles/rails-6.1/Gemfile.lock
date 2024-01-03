@@ -107,10 +107,10 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.7.0)
-    nokogiri (1.15.5)
+    nokogiri (1.16.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.15.5-x86_64-linux)
+    nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -194,7 +194,7 @@ PLATFORMS
 
 DEPENDENCIES
   combustion
-  nokogiri (~> 1.15.5)
+  nokogiri (~> 1.16.0)
   pry-byebug
   rails (~> 6.1.7)
   rake (~> 13.0)
