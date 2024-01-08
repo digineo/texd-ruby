@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: ad2354e6c6fc12134c240b7af16169624f365f87
+  revision: 3bbf21c3431c4d195a7bad490291d56e78c97657
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -148,14 +148,14 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     multipart-post (2.3.0)
-    net-imap (0.4.9)
+    net-imap (0.4.9.1)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.4.0)
+    net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
     nokogiri (1.16.0-x86_64-linux)
@@ -187,7 +187,7 @@ GEM
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
-    reline (0.4.1)
+    reline (0.4.2)
       io-console (~> 0.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
