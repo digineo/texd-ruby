@@ -27,7 +27,7 @@ Install the gem and add to the application's Gemfile by executing:
   This may jump to [Ubuntu Noble (24.04 LTS)](https://packages.ubuntu.com/noble/ruby)
   and Ruby 3.1 in the near future.
 
-[^2]: See [commit `6ba2fdb`][https://github.com/rails/rails/commit/6ba2fdb2fe85751b573aadd05608471daf1a44ff]
+[^2]: See [commit `6ba2fdb`](https://github.com/rails/rails/commit/6ba2fdb2fe85751b573aadd05608471daf1a44ff)
   and [PR #50491](https://github.com/rails/rails/pull/50491) in the Rails repository.
 
 ## Configuration
