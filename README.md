@@ -15,6 +15,9 @@ You need to meet the following requirements for this gem to work:
 
 Older versions of Ruby and Rails *may* work, but this is not guaranteed.
 
+(Please note that the current Rails `main` branch, i.e. Rails 7.2-to-be,
+requires Ruby 3.1+[^2].)
+
 Install the gem and add to the application's Gemfile by executing:
 
     $ bundle add texd
@@ -23,6 +26,9 @@ Install the gem and add to the application's Gemfile by executing:
   [Ubuntu Focal (20.04 LTS)](https://packages.ubuntu.com/focal/ruby).
   This may jump to [Ubuntu Noble (24.04 LTS)](https://packages.ubuntu.com/noble/ruby)
   and Ruby 3.1 in the near future.
+
+[^2]: See [commit `6ba2fdb`][https://github.com/rails/rails/commit/6ba2fdb2fe85751b573aadd05608471daf1a44ff]
+  and [PR #50491](https://github.com/rails/rails/pull/50491) in the Rails repository.
 
 ## Configuration
 
