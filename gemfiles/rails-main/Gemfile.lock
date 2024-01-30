@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: fe81d667a78719d5b8f7e95085cbb7aa937698c3
+  revision: 1cb5b8d5a9b292cd5eb919ac3d632ba52e2ee391
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -195,7 +195,7 @@ GEM
     rspec-mocks (3.12.6)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-rails (6.1.0)
+    rspec-rails (6.1.1)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       railties (>= 6.1)
@@ -230,4 +230,4 @@ DEPENDENCIES
   texd!
 
 BUNDLED WITH
-   2.4.19
+   2.5.5
