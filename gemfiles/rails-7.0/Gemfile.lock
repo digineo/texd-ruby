@@ -101,8 +101,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.22.0)
-    multipart-post (2.3.0)
+    minitest (5.22.2)
+    multipart-post (2.4.0)
     net-imap (0.4.10)
       date
       net-protocol
