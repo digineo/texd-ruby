@@ -1,6 +1,29 @@
 ## Unreleased
 
-[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.5.1...master)
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.6.0...master)
+
+## v0.6.0 - 2024-02-13
+
+**Changes**
+
+- Add another optional argument to the `escape` helper, to disallow replacing
+  of hyphens.
+
+  Previously, `escape(str, typographic: true)` did replace the hyphen between
+  word-characters with `"=` (i.e. the babel shorthand for a hard-hyphen in German
+  locale).
+
+  Now it is possible to disable the hyphenation replacement explicitly:
+
+  ```erb
+  <%= escape str, hyphenation: false %>
+  ```
+
+  The default value for the `hyphenation` option defaults to the value given to
+  the `typographic` option (which in turn is true by default).
+
+
+[Compare changes](https://github.com/digineo/texd-ruby/compare/v0.5.1...v0.6.0)
 
 ## v0.5.1 - 2022-10-10
 
