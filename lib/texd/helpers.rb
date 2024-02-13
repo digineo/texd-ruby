@@ -22,12 +22,15 @@ module Texd
       # single quotes
       [/(^|\W)'\b/, '\1\\glq{}'],
       [/\b'(\W|$)/, '\\grq{}\1'],
+    ].freeze
+
+    HYPHENATION_REPLACEMENTS = [
       # proper hyphenation
       [/(\w)-(\w)/, '\1"=\2'],
     ].freeze
 
     # Escapes the given text, making it safe for use in TeX documents.
-    def escape(text, line_break = "\\\\\\", typographic: true)
+    def escape(text, line_break = "\\\\\\", typographic: true, hyphenation: typographic)
       return "" if text.blank?
 
       text.to_s.dup.tap do |str|
@@ -39,8 +42,13 @@ module Texd
           end
         end
 
-        if typographic
-          TYPOGRAPHIC_REPLACEMENTS.each do |re, replacement|
+        {
+          TYPOGRAPHIC_REPLACEMENTS => typographic,
+          HYPHENATION_REPLACEMENTS => hyphenation,
+        }.each do |replacements, active|
+          next unless active
+
+          replacements.each do |re, replacement|
             str.gsub!(re, replacement)
           end
         end
