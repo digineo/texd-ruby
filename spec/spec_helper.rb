@@ -5,7 +5,9 @@ require "bundler/setup"
 require "combustion"
 
 Combustion.path = "spec/dummy"
-Combustion.initialize! :action_controller, :action_view
+Combustion.initialize! :action_controller, :action_view do
+  config.active_support.cache_format_version = 7.0 if Rails.gem_version >= "7.0.0"
+end
 
 require "rspec/rails"
 
