@@ -194,7 +194,7 @@ PLATFORMS
 
 DEPENDENCIES
   combustion
-  nokogiri (~> 1.15.5)
+  nokogiri (~> 1.15.6)
   pry-byebug
   rails (~> 6.1.7)
   rake (~> 13.0)
