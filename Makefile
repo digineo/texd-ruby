@@ -9,44 +9,49 @@ test-stable: rails-6.0 rails-6.1 rails-7.0 rails-7.1
 .PHONY: test-all
 test-all: test rails-main
 
-# TODO: make rails-* tasks DRY?
-
 .PHONY: rails-6.0
 rails-6.0:
-	export BUNDLE_GEMFILE=gemfiles/rails-6.0/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
+	bin/make-helper.sh 6.0 bundle --quiet && \
+	bin/make-helper.sh 6.0 rspec $(SPEC)
 
 .PHONY: rails-6.1
 rails-6.1:
-	export BUNDLE_GEMFILE=gemfiles/rails-6.1/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
+	bin/make-helper.sh 6.1 bundle --quiet && \
+	bin/make-helper.sh 6.1 rspec $(SPEC)
 
 .PHONY: rails-7.0
 rails-7.0:
-	export BUNDLE_GEMFILE=gemfiles/rails-7.0/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
+	bin/make-helper.sh 7.0 bundle --quiet && \
+	bin/make-helper.sh 7.0 rspec $(SPEC)
 
 .PHONY: rails-7.1
 rails-7.1:
-	export BUNDLE_GEMFILE=gemfiles/rails-7.1/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
+	bin/make-helper.sh 7.1 bundle --quiet && \
+	bin/make-helper.sh 7.1 rspec $(SPEC)
 
 .PHONY: rails-main
 rails-main:
-	export BUNDLE_GEMFILE=gemfiles/rails-main/Gemfile && bundle --quiet && bundle exec rspec $(SPEC)
+	bin/make-helper.sh main bundle --quiet && \
+	bin/make-helper.sh main rspec $(SPEC)
 
 .PHONY: update
 update:
-	export BUNDLE_GEMFILE=gemfiles/rails-6.0/Gemfile  && bundle update
-	export BUNDLE_GEMFILE=gemfiles/rails-6.1/Gemfile  && bundle update
-	export BUNDLE_GEMFILE=gemfiles/rails-7.0/Gemfile  && bundle update
-	export BUNDLE_GEMFILE=gemfiles/rails-7.1/Gemfile  && bundle update
-	export BUNDLE_GEMFILE=gemfiles/rails-main/Gemfile && bundle update
-	export BUNDLE_GEMFILE=Gemfile                     && bundle update
+	bin/make-helper.sh 6.0  bundle update
+	bin/make-helper.sh 6.1  bundle update
+	bin/make-helper.sh 7.0  bundle update
+	bin/make-helper.sh 7.1  bundle update
+	bin/make-helper.sh main bundle update
+	bin/make-helper.sh .    bundle update
 
 .PHONY: rubocop
 rubocop:
-	export BUNDLE_GEMFILE=Gemfile && bundle --quiet && bundle exec rake rubocop:autocorrect
+	bin/make-helper.sh . bundle --quiet && \
+	bin/make-helper.sh . rake rubocop:autocorrect
 
 .PHONY: docs
 docs:
-	export BUNDLE_GEMFILE=Gemfile && bundle --quiet && bundle exec yard doc --markup markdown 'lib/**/*.rb' - README.md CHANGELOG.md LICENSE
+	bin/make-helper.sh . bundle --quiet && \
+	bin/make-helper.sh . yard doc --markup markdown 'lib/**/*.rb' - README.md CHANGELOG.md LICENSE
 
 .PHONY: texd-docker
 texd-docker:
