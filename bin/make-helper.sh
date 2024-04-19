@@ -47,17 +47,14 @@ shift
 # Ruby 3.1+, the rest is kept at 2.7 for now.
 case "$rails_ver" in
 ".")
-	log "Using to ruby-2.7 for project root"
 	gemdir=""
 	ruby_ver="2.7"
 	;;
 "main")
-	log "Using to ruby-3.1 for rails-main"
 	gemdir="gemfiles/rails-main"
 	ruby_ver="3.1"
 	;;
 *)
-	log "Using to ruby-2.7 for rails-${rails_ver}"
 	gemdir="gemfiles/rails-${rails_ver}"
 	ruby_ver="2.7"
 
@@ -71,8 +68,13 @@ esac
 # configure rbenv and bundler
 # XXX: RBENV_VERSION + RBENV_GEMSETS should work, but last time I tried
 #      it produced a mess. Need to verify in an isolated checkout...
-echo "$ruby_ver"         > "${root}/.ruby-version"
-echo "./.gems/$ruby_ver" > "${root}/.ruby-gemset"
+if [ "z$ruby_ver" = "z$(cat "${root}/.ruby-version")" ]; then
+	log "using Ruby to $ruby_ver"
+else
+	log "switching Ruby to $ruby_ver"
+	echo "$ruby_ver" > "${root}/.ruby-version"
+	echo "./.gems/$ruby_ver" > "${root}/.ruby-gemset"
+fi
 export BUNDLE_GEMFILE="./$gemdir/Gemfile"
 
 # run CMD; prefix with "bundle exec", unless CMD starts with "bundle"
