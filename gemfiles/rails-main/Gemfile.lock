@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a94938f10ce0f34c765028e518caed6527a31d11
+  revision: f6fd15cb7563740ba3896207ed28e1308301d9dc
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -88,7 +88,7 @@ GIT
     railties (7.2.0.alpha)
       actionpack (= 7.2.0.alpha)
       activesupport (= 7.2.0.alpha)
-      irb
+      irb (~> 1.13)
       rackup (>= 1.0.0)
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
@@ -125,8 +125,8 @@ GEM
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
-    irb (1.12.0)
-      rdoc
+    irb (1.13.1)
+      rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -180,7 +180,7 @@ GEM
     rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    reline (0.5.3)
+    reline (0.5.5)
       io-console (~> 0.5)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
