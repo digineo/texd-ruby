@@ -96,7 +96,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
     minitest (5.22.3)
-    multipart-post (2.4.0)
+    multipart-post (2.4.1)
     net-imap (0.4.10)
       date
       net-protocol
