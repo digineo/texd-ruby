@@ -7,7 +7,7 @@ test: test-stable rubocop
 test-stable: rails-6.0 rails-6.1 rails-7.0 rails-7.1
 
 .PHONY: test-all
-test-all: test rails-main
+test-all: test rails-main rails-7.2
 
 .PHONY: rails-6.0
 rails-6.0:
@@ -29,10 +29,25 @@ rails-7.1:
 	bin/make-helper.sh 7.1 bundle --quiet && \
 	bin/make-helper.sh 7.1 rspec $(SPEC)
 
+.PHONY: rails-7.2
+rails-7.2:
+	bin/make-helper.sh 7.2 bundle --quiet && \
+	bin/make-helper.sh 7.2 rspec $(SPEC)
+
 .PHONY: rails-main
 rails-main:
 	bin/make-helper.sh main bundle --quiet && \
 	bin/make-helper.sh main rspec $(SPEC)
+
+.PHONY: setup
+setup:
+	bin/make-helper.sh 6.0  gem install bundler:2.4.22
+	bin/make-helper.sh 6.1  gem install bundler:2.4.22
+	bin/make-helper.sh 7.0  gem install bundler:2.4.22
+	bin/make-helper.sh 7.1  gem install bundler:2.4.22
+	bin/make-helper.sh 7.2  gem install bundler:2.5.6
+	bin/make-helper.sh main gem install bundler:2.5.6
+	bin/make-helper.sh .    gem install bundler:2.4.22
 
 .PHONY: update
 update:
@@ -40,6 +55,7 @@ update:
 	bin/make-helper.sh 6.1  bundle update
 	bin/make-helper.sh 7.0  bundle update
 	bin/make-helper.sh 7.1  bundle update
+	bin/make-helper.sh 7.2  bundle update
 	bin/make-helper.sh main bundle update
 	bin/make-helper.sh .    bundle update
 

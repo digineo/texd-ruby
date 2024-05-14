@@ -40,6 +40,7 @@ err() {
 
 ruby_ver=
 gemdir=
+gemset_dir=
 rails_ver="$1"
 shift
 
@@ -49,10 +50,17 @@ case "$rails_ver" in
 ".")
 	gemdir=""
 	ruby_ver="2.7"
+	gemset_dir="./gems/project"
 	;;
 "main")
 	gemdir="gemfiles/rails-main"
 	ruby_ver="3.1"
+	gemset_dir="./gems/rails-main"
+	;;
+"7.2")
+	gemdir="gemfiles/rails-7.2-stable"
+	ruby_ver="3.1"
+	gemset_dir="./gems/rails-7.2"
 	;;
 *)
 	gemdir="gemfiles/rails-${rails_ver}"
@@ -73,13 +81,13 @@ if [ "z$ruby_ver" = "z$(cat "${root}/.ruby-version")" ]; then
 else
 	log "switching Ruby to $ruby_ver"
 	echo "$ruby_ver" > "${root}/.ruby-version"
-	echo "./.gems/$ruby_ver" > "${root}/.ruby-gemset"
+	echo "./${gemdir}/.gems" > "${root}/.ruby-gemset"
 fi
 export BUNDLE_GEMFILE="./$gemdir/Gemfile"
 
 # run CMD; prefix with "bundle exec", unless CMD starts with "bundle"
 case "$1" in
-"bundle")
+"bundle"|"gem")
 	exec "$@"
 	;;
 *)
