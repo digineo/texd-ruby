@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 35cc53410669a366eab8de335742b0096d06abb7
+  revision: fb4300ce193c338e00c8fe3a8372dc594f6c5de8
   branch: 7-2-stable
   specs:
     actioncable (7.2.0.alpha)
@@ -243,4 +243,4 @@ DEPENDENCIES
   texd!
 
 BUNDLED WITH
-   2.5.6
+   2.5.10
