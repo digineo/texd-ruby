@@ -76,11 +76,12 @@ esac
 # configure rbenv and bundler
 # XXX: RBENV_VERSION + RBENV_GEMSETS should work, but last time I tried
 #      it produced a mess. Need to verify in an isolated checkout...
-if [ "z$ruby_ver" = "z$(cat "${root}/.ruby-version")" ]; then
-	log "using Ruby to $ruby_ver"
-else
+if [ "z$ruby_ver" != "z$(cat "${root}/.ruby-version")" ]; then
 	log "switching Ruby to $ruby_ver"
 	echo "$ruby_ver" > "${root}/.ruby-version"
+fi
+if [ "z./${gemdir}/.gems" != "z$(cat "${root}/.ruby-gemset")" ]; then
+	log "switching gemset to $gemdir"
 	echo "./${gemdir}/.gems" > "${root}/.ruby-gemset"
 fi
 export BUNDLE_GEMFILE="./$gemdir/Gemfile"
