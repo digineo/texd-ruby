@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: cb977226eae571f5d794058b77bd4ef009f6a6f2
+  revision: c1f1b14adce5cd373ed63611486eb7a7db73c78c
   branch: 7-2-stable
   specs:
     actioncable (7.2.0.alpha)
@@ -139,7 +139,7 @@ GEM
     marcel (1.0.4)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.23.0)
+    minitest (5.23.1)
     multipart-post (2.4.1)
     net-imap (0.4.11)
       date
@@ -188,7 +188,7 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rake (13.2.1)
-    rdoc (6.6.3.1)
+    rdoc (6.7.0)
       psych (>= 4.0.0)
     reline (0.5.7)
       io-console (~> 0.5)
@@ -223,7 +223,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.14)
+    zeitwerk (2.6.15)
 
 PLATFORMS
   aarch64-linux
