@@ -58,11 +58,16 @@ updates:
           - version-update:semver-minor
 
   - package-ecosystem: "bundler"
-    directory: "/gemfiles/rails-7.2" # pre-release
+    directory: "/gemfiles/rails-7.2"
     schedule:
-      interval: "weekly" # volatile, avoid daily PRs
+      interval: "daily"
       time:     "08:30"
       timezone: "Europe/Berlin"
+    ignore:
+      - dependency-name: "rails"
+        update-types: # keep only patch level
+          - version-update:semver-major
+          - version-update:semver-minor
 
   - package-ecosystem: "bundler"
     directory: "/gemfiles/rails-main" # 8.0 dev
