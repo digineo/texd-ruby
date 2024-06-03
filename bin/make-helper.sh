@@ -44,7 +44,7 @@ gemset_dir=
 rails_ver="$1"
 shift
 
-# determine Ruby version from Rails version. rails-main (7.2+) requires
+# determine Ruby version from Rails version. rails-main and 7.2+ require
 # Ruby 3.1+, the rest is kept at 2.7 for now.
 case "$rails_ver" in
 ".")
@@ -58,7 +58,7 @@ case "$rails_ver" in
 	gemset_dir="./gems/rails-main"
 	;;
 "7.2")
-	gemdir="gemfiles/rails-7.2-stable"
+	gemdir="gemfiles/rails-7.2"
 	ruby_ver="3.1"
 	gemset_dir="./gems/rails-7.2"
 	;;
