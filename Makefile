@@ -51,13 +51,13 @@ setup:
 
 .PHONY: update
 update:
-	bin/make-helper.sh 6.0  bundle update
-	bin/make-helper.sh 6.1  bundle update
-	bin/make-helper.sh 7.0  bundle update
-	bin/make-helper.sh 7.1  bundle update
-	bin/make-helper.sh 7.2  bundle update
-	bin/make-helper.sh main bundle update
-	bin/make-helper.sh .    bundle update
+	bin/make-helper.sh 6.0  bundle update && bin/make-helper.sh 6.0  bundle clean --force
+	bin/make-helper.sh 6.1  bundle update && bin/make-helper.sh 6.1  bundle clean --force
+	bin/make-helper.sh 7.0  bundle update && bin/make-helper.sh 7.0  bundle clean --force
+	bin/make-helper.sh 7.1  bundle update && bin/make-helper.sh 7.1  bundle clean --force
+	bin/make-helper.sh 7.2  bundle update && bin/make-helper.sh 7.2  bundle clean --force
+	bin/make-helper.sh main bundle update && bin/make-helper.sh main bundle clean --force
+	bin/make-helper.sh .    bundle update && bin/make-helper.sh .    bundle clean --force
 
 .PHONY: rubocop
 rubocop:
