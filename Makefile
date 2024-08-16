@@ -11,32 +11,32 @@ test-all: test rails-main rails-7.2
 
 .PHONY: rails-6.0
 rails-6.0:
-	bin/make-helper.sh 6.0 bundle --quiet && \
+	bin/make-helper.sh 6.0 bundle --quiet
 	bin/make-helper.sh 6.0 rspec $(SPEC)
 
 .PHONY: rails-6.1
 rails-6.1:
-	bin/make-helper.sh 6.1 bundle --quiet && \
+	bin/make-helper.sh 6.1 bundle --quiet
 	bin/make-helper.sh 6.1 rspec $(SPEC)
 
 .PHONY: rails-7.0
 rails-7.0:
-	bin/make-helper.sh 7.0 bundle --quiet && \
+	bin/make-helper.sh 7.0 bundle --quiet
 	bin/make-helper.sh 7.0 rspec $(SPEC)
 
 .PHONY: rails-7.1
 rails-7.1:
-	bin/make-helper.sh 7.1 bundle --quiet && \
+	bin/make-helper.sh 7.1 bundle --quiet
 	bin/make-helper.sh 7.1 rspec $(SPEC)
 
 .PHONY: rails-7.2
 rails-7.2:
-	bin/make-helper.sh 7.2 bundle --quiet && \
+	bin/make-helper.sh 7.2 bundle --quiet
 	bin/make-helper.sh 7.2 rspec $(SPEC)
 
 .PHONY: rails-main
 rails-main:
-	bin/make-helper.sh main bundle --quiet && \
+	bin/make-helper.sh main bundle --quiet
 	bin/make-helper.sh main rspec $(SPEC)
 
 .PHONY: setup
@@ -61,12 +61,12 @@ update:
 
 .PHONY: rubocop
 rubocop:
-	bin/make-helper.sh . bundle --quiet && \
+	bin/make-helper.sh . bundle --quiet
 	bin/make-helper.sh . rake rubocop:autocorrect
 
 .PHONY: docs
 docs:
-	bin/make-helper.sh . bundle --quiet && \
+	bin/make-helper.sh . bundle --quiet
 	bin/make-helper.sh . yard doc --markup markdown 'lib/**/*.rb' - README.md CHANGELOG.md LICENSE
 
 .PHONY: texd-docker
