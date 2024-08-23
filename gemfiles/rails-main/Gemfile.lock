@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 607d61e884237c223c24c6f47efa0b561dd8b637
+  revision: ca05b17c996e41908f4e9b9a2895a29fd21c8ceb
   branch: main
   specs:
     actioncable (8.0.0.alpha)
@@ -190,7 +190,7 @@ GEM
       rspec-mocks (~> 3.13.0)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.1)
+    rspec-expectations (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-mocks (3.13.1)
