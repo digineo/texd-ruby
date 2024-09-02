@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 171c4e4d377d9653a79d38c94bdfadf1a2c4c312
+  revision: 8bac99ad7a403ef52a5c97e7afa73c7bbcc67110
   branch: main
   specs:
     actioncable (8.0.0.alpha)
@@ -129,7 +129,7 @@ GEM
     irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    logger (1.6.0)
+    logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -207,7 +207,7 @@ GEM
     rspec-support (3.13.1)
     securerandom (0.3.1)
     stringio (3.1.1)
-    thor (1.3.1)
+    thor (1.3.2)
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -216,7 +216,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.17)
+    zeitwerk (2.6.18)
 
 PLATFORMS
   x86_64-linux
