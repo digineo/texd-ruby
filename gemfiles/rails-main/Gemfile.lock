@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 69c86f9606e490b24e8628dc47f34fbec6b321d1
+  revision: 9f8a3db328db9386e47a84138c49c410d36b7e78
   branch: main
   specs:
     actioncable (8.0.0.alpha)
@@ -144,7 +144,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.25.1)
     multipart-post (2.4.1)
-    net-imap (0.4.15)
+    net-imap (0.4.16)
       date
       net-protocol
     net-pop (0.1.2)
@@ -183,7 +183,7 @@ GEM
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    reline (0.5.9)
+    reline (0.5.10)
       io-console (~> 0.5)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
