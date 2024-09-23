@@ -71,7 +71,7 @@ RSpec.describe Texd do
           expect(err.logs).to be_blank
           expect(err.details).to match a_hash_including(
             "cmd"    => "latexmk",
-            "output" => a_string_matching(/Log file says no output from latex/),
+            "output" => a_string_matching(/try to force complete processing/),
           )
         end
       end

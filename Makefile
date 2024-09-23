@@ -76,15 +76,18 @@ docs:
 
 .PHONY: texd-docker
 texd-docker:
-	rm -rvf tmp/jobs tmp/refs
-	mkdir -p tmp/jobs tmp/refs
+	rm -rvf tmp/jobs tmp/refs tmp/home
+	mkdir -p tmp/jobs tmp/refs tmp/home
 	docker run --rm \
 		--name texd-dev \
 		-p 127.0.0.1:2201:2201 \
-		-v $$(pwd)/tmp/jobs:/texd \
-		-v $$(pwd)/tmp/refs:/refs \
+		-e HOME=/texd/home \
+		-v $$(pwd)/tmp/jobs:/texd/jobs \
+		-v $$(pwd)/tmp/refs:/texd/refs \
+		-v $$(pwd)/tmp/home:/texd/home \
 		-u $$(id -u):$$(id -g) \
 		ghcr.io/digineo/texd \
-			--reference-store dir:///refs \
+			--job-directory /texd/jobs \
+			--reference-store dir:///texd/refs \
 			--retention-policy=purge-on-start \
 			--keep-jobs always

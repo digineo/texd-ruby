@@ -29,6 +29,7 @@ jobs:
       run: |
         docker run --rm -d --name texd-dev \
           -p 2201:2201 \
+          -e HOME=/tmp \
           -v $(mktemp -d):/texd \
           -v $(mktemp -d):/refs \
           --user=$(id -u):$(id -g) \
