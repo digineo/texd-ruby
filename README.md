@@ -15,8 +15,8 @@ You need to meet the following requirements for this gem to work:
 
 Older versions of Ruby and Rails *may* work, but this is not guaranteed.
 
-(Please note that the current Rails `main` branch, i.e. Rails 7.2-to-be,
-requires Ruby 3.1+[^2].)
+(Please note that Rails 7.2 requires Ruby 3.1+[^2], and the current `main`
+branch, i.e. Rails 8.0-to-be, requires Ruby 3.2+[^3].)
 
 Install the gem and add to the application's Gemfile by executing:
 
@@ -29,6 +29,9 @@ Install the gem and add to the application's Gemfile by executing:
 
 [^2]: See [commit `6ba2fdb`](https://github.com/rails/rails/commit/6ba2fdb2fe85751b573aadd05608471daf1a44ff)
   and [PR #50491](https://github.com/rails/rails/pull/50491) in the Rails repository.
+
+[^3]: See [commit `c7b9bb1`](https://github.com/rails/rails/commit/c7b9bb1b73628daf9c9ebd56c63ce3008b31ac6f)
+  in the Rails repository.
 
 ## Configuration
 

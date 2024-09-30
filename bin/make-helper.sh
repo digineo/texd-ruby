@@ -54,7 +54,7 @@ case "$rails_ver" in
 	;;
 "main")
 	gemdir="gemfiles/rails-main"
-	ruby_ver="3.1"
+	ruby_ver="3.2"
 	gemset_dir="./gems/rails-main"
 	;;
 "7.2")
