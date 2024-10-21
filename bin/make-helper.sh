@@ -57,6 +57,11 @@ case "$rails_ver" in
 	ruby_ver="3.2"
 	gemset_dir="./gems/rails-main"
 	;;
+"8.0")
+	gemdir="gemfiles/rails-8.0"
+	ruby_ver="3.2"
+	gemset_dir="./gems/rails-8.0"
+	;;
 "7.2")
 	gemdir="gemfiles/rails-7.2"
 	ruby_ver="3.1"

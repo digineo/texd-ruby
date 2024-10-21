@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         ruby:  ['3.2', '3.3']
-        rails: ['main']
+        rails: ['8.0', 'main']
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails-${{ matrix.rails }}/Gemfile
