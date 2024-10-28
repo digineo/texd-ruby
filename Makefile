@@ -9,10 +9,10 @@ test-stable: rails-6.0 rails-6.1 rails-7.0 rails-7.1 rails-7.2
 .PHONY: test-all
 test-all: test rails-main rails-8.0
 
-.PHONY: update-test
-update-test: update test-all
-	# git add Gemfile.lock gemfiles/*/Gemfile.lock
-	# git commit -m "update dependencies"
+.PHONY: update-all-dependencies
+update-all-dependencies: update test-all
+	git add Gemfile.lock gemfiles/*/Gemfile.lock
+	git commit -m "update dependencies"
 
 .PHONY: rails-6.0
 rails-6.0:
