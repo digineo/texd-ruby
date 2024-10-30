@@ -4,7 +4,7 @@ source "https://rubygems.org"
 gemspec path: "../.."
 
 gem "pry-byebug"
-gem "rails", "~> 8.0.0.rc1"
+gem "rails", "~> 8.0.0.rc2"
 
 # keep in sync with ../../Gemfile
 group :development, :test do
