@@ -1,0 +1,43 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkou@4
+
+    - name: Update Dependencies
+      run: |
+        make setup
+        make update
+      env:
+        USE_DOCKER: 1
+
+    - name: Create PR
+      run: |
+        if git diff --exit-code **/Gemfile.lock >/dev/null; then
+          echo "no changes"
+          exit 0
+        fi
+
+        week=$(date +%GW%V)
+        branch="chore/update-$week"
+        git checkout -b $branch
+
+        git add **/Gemfile.lock
+        git commit -m "chore: update dependencies"
+        git push -u origin --force $branch
+
+        gh pr create \
+          --title "Weekly dependency update" \
+          --body "These are the updates for $week."

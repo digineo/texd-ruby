@@ -55,8 +55,8 @@ setup:
 	bin/make-helper.sh 6.1  gem install bundler:2.4.22
 	bin/make-helper.sh 7.0  gem install bundler:2.4.22
 	bin/make-helper.sh 7.1  gem install bundler:2.4.22
-	bin/make-helper.sh 7.2  gem install bundler:2.5.6
-	bin/make-helper.sh 7.2  gem install bundler:2.5.22
+	bin/make-helper.sh 7.2  gem install bundler:2.5.10
+	bin/make-helper.sh 8.0  gem install bundler:2.5.22
 	bin/make-helper.sh main gem install bundler:2.5.22
 	bin/make-helper.sh .    gem install bundler:2.4.22
 

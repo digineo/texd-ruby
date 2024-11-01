@@ -13,3 +13,4 @@
 # Ruby version managers
 .ruby-*
 /.gems/
+/.docker

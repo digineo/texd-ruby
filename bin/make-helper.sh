@@ -18,6 +18,12 @@
 #		shall be a Ruby command and its arguments. It is prefixed with
 #		`bundle exec`, unless it already starts with `bundle`.
 #
+# ENVIRONMENT
+#
+#	USE_DOCKER
+#		When set to "1", CMD is run in a Docker container, with the
+#		current UID/GID.
+#
 # KNOWN ISSUES
 #	- This *requires* rbenv and rbenv-gemset to work properly. This is not
 #	  documented in the README.
@@ -40,7 +46,6 @@ err() {
 
 ruby_ver=
 gemdir=
-gemset_dir=
 rails_ver="$1"
 shift
 
@@ -50,22 +55,18 @@ case "$rails_ver" in
 ".")
 	gemdir=""
 	ruby_ver="2.7"
-	gemset_dir="./gems/project"
 	;;
 "main")
 	gemdir="gemfiles/rails-main"
 	ruby_ver="3.2"
-	gemset_dir="./gems/rails-main"
 	;;
 "8.0")
 	gemdir="gemfiles/rails-8.0"
 	ruby_ver="3.2"
-	gemset_dir="./gems/rails-8.0"
 	;;
 "7.2")
 	gemdir="gemfiles/rails-7.2"
 	ruby_ver="3.1"
-	gemset_dir="./gems/rails-7.2"
 	;;
 *)
 	gemdir="gemfiles/rails-${rails_ver}"
@@ -78,25 +79,49 @@ case "$rails_ver" in
 	;;
 esac
 
-# configure rbenv and bundler
-# XXX: RBENV_VERSION + RBENV_GEMSETS should work, but last time I tried
-#      it produced a mess. Need to verify in an isolated checkout...
-if [ "z$ruby_ver" != "z$(cat "${root}/.ruby-version")" ]; then
-	log "switching Ruby to $ruby_ver"
-	echo "$ruby_ver" > "${root}/.ruby-version"
-fi
-if [ "z./${gemdir}/.gems" != "z$(cat "${root}/.ruby-gemset")" ]; then
-	log "switching gemset to $gemdir"
-	echo "./${gemdir}/.gems" > "${root}/.ruby-gemset"
-fi
-export BUNDLE_GEMFILE="./$gemdir/Gemfile"
-
-# run CMD; prefix with "bundle exec", unless CMD starts with "bundle"
+# prefix CMD with "bundle exec", unless CMD starts with "bundle" or "gem"
 case "$1" in
 "bundle"|"gem")
-	exec "$@"
+	# nothing to do
 	;;
 *)
-	exec bundle exec "$@"
+	set -- bundle exec "$@"
 	;;
 esac
+
+
+if [ "$USE_DOCKER" = "1" ]; then
+	dockerhome=".docker/project"
+	if [ -n "$gemdir" ]; then
+		dockerhome=".docker/$(basename "$gemdir")"
+	fi
+
+	mkdir -p "$dockerhome"
+
+	exec docker run --rm -it \
+		--user $(id -u):$(id -g) \
+		--volume "$(pwd):/texd" \
+		--workdir /texd \
+		--env HOME="/texd/${dockerhome}" \
+		--env GEM_HOME="/texd/${dockerhome}/gems" \
+		--env BUNDLE_PATH="/texd/${dockerhome}/bundle" \
+		--env BUNDLE_GEMFILE="/texd/${gemdir}/Gemfile" \
+		--env BUNDLE_RETRY=3 \
+		"ruby:${ruby_ver}" "$@"
+else
+	# configure rbenv and bundler
+	# XXX: RBENV_VERSION + RBENV_GEMSETS should work, but last time I tried
+	#      it produced a mess. Need to verify in an isolated checkout...
+	if [ "z$ruby_ver" != "z$(cat "${root}/.ruby-version")" ]; then
+		log "switching Ruby to $ruby_ver"
+		echo "$ruby_ver" > "${root}/.ruby-version"
+	fi
+	if [ "z./${gemdir}/.gems" != "z$(cat "${root}/.ruby-gemset")" ]; then
+		log "switching gemset to $gemdir"
+		echo "./${gemdir}/.gems" > "${root}/.ruby-gemset"
+	fi
+	export BUNDLE_GEMFILE="./$gemdir/Gemfile"
+
+	# run CMD
+	exec "$@"
+fi
