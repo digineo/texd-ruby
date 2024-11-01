@@ -98,7 +98,7 @@ if [ "$USE_DOCKER" = "1" ]; then
 
 	mkdir -p "$dockerhome"
 
-	exec docker run --rm -it \
+	exec docker run --rm \
 		--user $(id -u):$(id -g) \
 		--volume "$(pwd):/texd" \
 		--workdir /texd \
