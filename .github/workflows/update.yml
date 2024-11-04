@@ -30,6 +30,9 @@ jobs:
           exit 0
         fi
 
+        git config --global user.email "$(echo -n 'aW5mcmFzdHJ1Y3R1cmUK' | base64 -d)@digineo.de"
+        git config --global user.name "Digineo Bot"
+
         week=$(date +%GW%V)
         branch="chore/update-$week"
         git checkout -b $branch
