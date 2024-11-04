@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a7c8a20825be5ac8d96566ec5dbe9daa85568bc8
+  revision: 852b1431de9cf85464d23d2ca3a9d051e0adb20d
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -172,9 +172,8 @@ GEM
       rack (>= 3.0.0)
     rack-test (2.1.0)
       rack (>= 1.3)
-    rackup (2.1.0)
+    rackup (2.2.0)
       rack (>= 3)
-      webrick (~> 1.8)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -216,7 +215,6 @@ GEM
       concurrent-ruby (~> 1.0)
     uri (0.13.1)
     useragent (0.16.10)
-    webrick (1.9.0)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -235,4 +233,4 @@ DEPENDENCIES
   texd!
 
 BUNDLED WITH
-   2.5.20
+   2.5.22
