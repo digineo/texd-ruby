@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 035485ed19bed3348a5d207dacb251d649189d08
+  revision: 410ad1c8a18ebf7f544d77d2cb82de2a0e87d23a
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -144,7 +144,7 @@ GEM
     marcel (1.0.4)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.25.2)
+    minitest (5.25.4)
     multipart-post (2.4.1)
     net-imap (0.5.1)
       date
@@ -156,7 +156,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.16.8-x86_64-linux)
+    nokogiri (1.17.0-x86_64-linux)
       racc (~> 1.4)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -215,7 +215,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uri (1.0.2)
-    useragent (0.16.10)
+    useragent (0.16.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
