@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 3a91006d22fa465fbce41370bbe66aa332bdcc2d
+  revision: 5813c82bbd3770d15f8b7f22e898727a7587f6df
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -123,16 +123,16 @@ GEM
     date (3.4.1)
     diff-lcs (1.5.1)
     drb (2.2.1)
-    erubi (1.13.0)
+    erubi (1.13.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
-    irb (1.14.2)
+    irb (1.14.3)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    logger (1.6.3)
+    logger (1.6.4)
     loofah (2.23.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -146,7 +146,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.25.4)
     multipart-post (2.4.1)
-    net-imap (0.5.1)
+    net-imap (0.5.4)
       date
       net-protocol
     net-pop (0.1.2)
@@ -164,7 +164,7 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
-    psych (5.2.1)
+    psych (5.2.2)
       date
       stringio
     racc (1.8.1)
@@ -183,9 +183,9 @@ GEM
       loofah (~> 2.21)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     rake (13.2.1)
-    rdoc (6.9.0)
+    rdoc (6.10.0)
       psych (>= 4.0.0)
-    reline (0.5.12)
+    reline (0.6.0)
       io-console (~> 0.5)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
