@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: c00096fa5e9fd750dc5a140fca25675d1e464e71
+  revision: 0659e0b71d25ce1719290e438756fb872ec93d50
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -129,7 +129,8 @@ GEM
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
-    irb (1.14.3)
+    irb (1.15.1)
+      pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     logger (1.6.5)
@@ -158,6 +159,9 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.18.2-x86_64-linux-gnu)
       racc (~> 1.4)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
