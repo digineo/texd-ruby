@@ -1,5 +1,9 @@
 # texd
 
+[![Gem Version](https://badge.fury.io/rb/texd.svg)](https://badge.fury.io/rb/texd)
+[![Build Status](https://github.com/digineo/texd-ruby/actions/workflows/main.yml/badge.svg)](https://github.com/digineo/texd-ruby/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 texd is a Ruby client for the [texd web service](https://github.com/digineo/texd).
 
 It leverages ActionView's template rendering mechanism to compile `.tex`
@@ -8,30 +12,37 @@ in background jobs.
 
 ## Installation
 
-You need to meet the following requirements for this gem to work:
+The following Rails and Ruby versions are supported
+[and tested](https://github.com/digineo/texd-ruby/actions/workflows/main.yml?query=branch%3Amaster);
+older versions of Ruby and Rails *may* work, but this is not guaranteed.
 
-- Ruby 2.7 or later[^1]
-- Rails 6.0 or later
+| ↓ Rails / Ruby → | 2.7[^1] | 3.0 | 3.1 | 3.2 | 3.3 | 3.4 | Notes   |
+|-----------------:|:--------|:----|:----|:----|:----|:----|:--------|
+| 6.0              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
+| 6.1              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
+| 7.0              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
+| 7.1              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
+| 7.2              | ❌      | ❌  | ✅  | ✅  | ✅  | ✅  | (2) |
+| 8.0              | ❌      | ❌  | ❌  | ✅  | ✅  | ✅  | (3) |
+| main branch      | ❌      | ❌  | ❌  | ✅  | ✅  | ✅  | (3) |
 
-Older versions of Ruby and Rails *may* work, but this is not guaranteed.
+<details open><summary>Notes</summary>
 
-(Please note that Rails 7.2 requires Ruby 3.1+[^2], and the current `main`
-branch, i.e. Rails 8.0-to-be, requires Ruby 3.2+[^3].)
+1. Rails upto 7.2 depends on a version of Nokogiri which isn't available for Ruby 3.2+
+2. Rails 7.2 requires Ruby 3.1+[^2]
+3. Rails 8.0+ requires Ruby 3.2+[^3]
+
+</details>
 
 Install the gem and add to the application's Gemfile by executing:
 
     $ bundle add texd
 
-[^1]: We're currently tracking the Ruby version shipped with
-  [Ubuntu Focal (20.04 LTS)](https://packages.ubuntu.com/focal/ruby).
-  This may jump to [Ubuntu Noble (24.04 LTS)](https://packages.ubuntu.com/noble/ruby)
-  and Ruby 3.1 in the near future.
+[^1]: We're currently tracking the Ruby version shipped with [Ubuntu Focal (20.04 LTS)](https://packages.ubuntu.com/focal/ruby). This may jump to [Ubuntu Noble (24.04 LTS)](https://packages.ubuntu.com/noble/ruby) and Ruby 3.2 in the future.
 
-[^2]: See [commit `6ba2fdb`](https://github.com/rails/rails/commit/6ba2fdb2fe85751b573aadd05608471daf1a44ff)
-  and [PR #50491](https://github.com/rails/rails/pull/50491) in the Rails repository.
+[^2]: See [commit `6ba2fdb`][https://github.com/rails/rails/commit/6ba2fdb2fe85751b573aadd05608471daf1a44ff] and [PR #50491][https://github.com/rails/rails/pull/50491] in the Rails repository.
 
-[^3]: See [commit `c7b9bb1`](https://github.com/rails/rails/commit/c7b9bb1b73628daf9c9ebd56c63ce3008b31ac6f)
-  in the Rails repository.
+[^3]: See [commit `c7b9bb1`][https://github.com/rails/rails/commit/c7b9bb1b73628daf9c9ebd56c63ce3008b31ac6f] in the Rails repository
 
 ## Configuration
 
@@ -242,8 +253,12 @@ $ make run-container EXTRA_RUN_ARGS='--reference-store dir://./tmp/refs'
 ```
 
 Note: In order to run the tests against the latest `rails/main` commit, you
-need to have Ruby 3.1+ installed. To run the tests against all released Rails
+need to have Ruby 3.2+ installed. To run the tests against all released Rails
 versions, Ruby 2.7 currently suffices.
+
+I'd recommend running `USE_DOCKER=1 make test-all` to run against all minimally
+supported Ruby versions in Docker containers. This obviously requires Docker to
+be installed.
 
 ## Contributing
 
