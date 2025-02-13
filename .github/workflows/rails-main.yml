@@ -10,8 +10,8 @@ jobs:
     name: Ruby ${{ matrix.ruby }}/Rails ${{ matrix.rails }}
     strategy:
       matrix:
-        ruby:  ['3.2', '3.3']
-        rails: ['8.0', 'main']
+        ruby:  ['3.2', '3.3', '3.4']
+        rails: ['main']
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails-${{ matrix.rails }}/Gemfile
