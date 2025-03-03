@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 6a76cae4fdfe4cae5007e6450988850fc9b5b8cd
+  revision: 02aa2844cd260403f41cc53ef36c0f872b23722c
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -219,7 +219,7 @@ GEM
     timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uri (1.0.2)
+    uri (1.0.3)
     useragent (0.16.11)
     websocket-driver (0.7.7)
       base64
