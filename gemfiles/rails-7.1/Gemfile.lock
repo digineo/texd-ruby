@@ -127,7 +127,7 @@ GEM
     minitest (5.25.5)
     multipart-post (2.4.1)
     mutex_m (0.3.0)
-    net-imap (0.4.21)
+    net-imap (0.4.22)
       date
       net-protocol
     net-pop (0.1.2)
@@ -155,8 +155,8 @@ GEM
       date
       stringio
     racc (1.8.1)
-    rack (3.1.13)
-    rack-session (2.1.0)
+    rack (3.1.14)
+    rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -206,7 +206,7 @@ GEM
     rspec-expectations (3.13.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.3)
+    rspec-mocks (3.13.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-rails (7.1.1)
