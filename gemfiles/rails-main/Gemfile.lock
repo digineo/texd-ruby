@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 747f85f200e7bb2c1a31b4e26e5a5655e2dc0cdc
+  revision: c44bde69b64aec2fea784b10c984f404f1fae138
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -121,7 +121,7 @@ GEM
     connection_pool (2.5.3)
     crass (1.0.6)
     date (3.4.1)
-    diff-lcs (1.6.1)
+    diff-lcs (1.6.2)
     drb (2.2.1)
     erubi (1.13.1)
     globalid (1.2.1)
@@ -168,7 +168,7 @@ GEM
     pry-byebug (3.11.0)
       byebug (~> 12.0)
       pry (>= 0.13, < 0.16)
-    psych (5.2.4)
+    psych (5.2.5)
       date
       stringio
     racc (1.8.1)
