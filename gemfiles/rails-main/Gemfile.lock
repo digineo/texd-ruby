@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 2a0e057570cbfd39fc38e35d97d1c43112c44ebf
+  revision: 02660cd9e84aa57c6cf3bf6e08cc18e18292e2fa
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -218,7 +218,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.4)
+    rspec-support (3.13.5)
     securerandom (0.4.1)
     stringio (3.1.7)
     thor (1.4.0)

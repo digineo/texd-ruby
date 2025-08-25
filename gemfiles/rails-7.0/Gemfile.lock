@@ -178,7 +178,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.4)
+    rspec-support (3.13.5)
     thor (1.4.0)
     timeout (0.4.3)
     tzinfo (2.0.6)
