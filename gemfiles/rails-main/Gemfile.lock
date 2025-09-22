@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: c60683d1868ad1f6667b2feb3cf5c9b485fa356c
+  revision: a72018d03af415f7baae25aeb304059b79232c8b
   branch: main
   specs:
     actioncable (8.1.0.beta1)
@@ -147,7 +147,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.0.4)
+    marcel (1.1.0)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -218,7 +218,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.5)
+    rspec-support (3.13.6)
     securerandom (0.4.1)
     stringio (3.1.7)
     thor (1.4.0)
