@@ -2,6 +2,8 @@
 
 [Compare changes](https://github.com/digineo/texd-ruby/compare/v0.6.0...master)
 
+## v0.7.0 - 2025-10-20
+
 **Changes**
 
 - Drop official support for Ruby < 3.2 and Rails < 7.0
