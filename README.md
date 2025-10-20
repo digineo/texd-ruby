@@ -256,6 +256,11 @@ I'd recommend running `USE_DOCKER=1 make test-all` to run against all minimally
 supported Ruby versions in Docker containers. This obviously requires Docker to
 be installed.
 
+Note: `USE_DOCKER=1 make test-x` *also* requires to define the endpoint for the
+gem. The easiest way is to declare `TEXD_ENDPOINT=http://$CONTAINER_IP:2201/` in
+addition to `USE_DOCKER=1` (substitute `$CONTAINER_IP` with the *Docker host* IP
+address of the container, usually in 172.17.0.1/16).
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/digineo/texd.

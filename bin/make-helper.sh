@@ -102,6 +102,7 @@ if [ "$USE_DOCKER" = "1" ]; then
 		--user $(id -u):$(id -g) \
 		--volume "$(pwd):/texd" \
 		--workdir /texd \
+		--env TEXD_ENDPOINT \
 		--env HOME="/texd/${dockerhome}" \
 		--env GEM_HOME="/texd/${dockerhome}/gems" \
 		--env BUNDLE_PATH="/texd/${dockerhome}/bundle" \
