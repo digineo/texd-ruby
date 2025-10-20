@@ -102,7 +102,7 @@ GIT
 PATH
   remote: ../..
   specs:
-    texd (0.6.0)
+    texd (0.7.0)
       multipart-post (~> 2.0)
       rails (>= 6.0, < 9)
 
