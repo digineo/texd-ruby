@@ -58,7 +58,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: "2.7" # minimal supported version
+        ruby-version: "3.2" # minimal supported version
         bundler-cache: true
 
     - name: Run rubocop

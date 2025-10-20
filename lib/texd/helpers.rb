@@ -2,7 +2,7 @@
 
 module Texd
   module Helpers
-    ESCAPE_RE = /([{}_$&%#])|([\\^~|<>])/.freeze
+    ESCAPE_RE = /([{}_$&%#])|([\\^~|<>])/
     ESC_MAP   = {
       "\\" => "backslash",
       "^"  => "asciicircum",

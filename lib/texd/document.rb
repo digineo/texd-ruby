@@ -6,8 +6,8 @@ module Texd
     attr_reader :attachments
 
     # Shorthand for `new.compile`.
-    def self.compile(**kwargs)
-      new.compile(**kwargs)
+    def self.compile(**)
+      new.compile(**)
     end
 
     def initialize

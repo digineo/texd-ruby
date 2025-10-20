@@ -6,6 +6,7 @@
 
 - Drop official support for Ruby < 3.2 and Rails < 7.0
 - Add support for Rails 8.1.0.rc1
+- Set `required_ruby_version` to >= 3.2.0
 
 ## v0.6.0 - 2024-02-13
 

@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-rails
   - rubocop-rake
   - rubocop-rspec
@@ -7,7 +7,7 @@ require:
 AllCops:
   DisplayCopNames: true
   StyleGuideCopsOnly: false
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.2
   NewCops: enable
 
 ## Layout Cops - https://docs.rubocop.org/rubocop/cops_layout.html
@@ -195,7 +195,6 @@ Style/EndlessMethod:
 
 Style/ArgumentsForwarding:
   Enabled: true
-  AllowOnlyRestArgument: true
 
 Style/CollectionCompact:
   Enabled: true

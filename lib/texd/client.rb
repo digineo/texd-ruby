@@ -74,7 +74,7 @@ module Texd
       "reference"   => ReferenceError,
     }.freeze
 
-    USER_AGENT = "texd-ruby/#{VERSION} Ruby/#{RUBY_VERSION}"
+    USER_AGENT = "texd-ruby/#{VERSION} Ruby/#{RUBY_VERSION}".freeze
 
     attr_reader :config
 
