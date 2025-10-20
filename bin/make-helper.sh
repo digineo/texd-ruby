@@ -54,7 +54,7 @@ shift
 case "$rails_ver" in
 ".")
 	gemdir=""
-	ruby_ver="2.7"
+	ruby_ver="3.2"
 	;;
 "main")
 	gemdir="gemfiles/rails-main"
@@ -66,11 +66,11 @@ case "$rails_ver" in
 	;;
 "7.2")
 	gemdir="gemfiles/rails-7.2"
-	ruby_ver="3.1"
+	ruby_ver="3.2"
 	;;
 *)
 	gemdir="gemfiles/rails-${rails_ver}"
-	ruby_ver="2.7"
+	ruby_ver="3.2"
 
 	# check if valid/known
 	if [ ! -d "${root}/${gemdir}" ]; then

@@ -12,25 +12,23 @@ in background jobs.
 
 ## Installation
 
-The following Rails and Ruby versions are supported
+The following Rails and Ruby versions[^1] are supported
 [and tested](https://github.com/digineo/texd-ruby/actions/workflows/main.yml?query=branch%3Amaster);
 older versions of Ruby and Rails *may* work, but this is not guaranteed.
 
-| ↓ Rails / Ruby → | 2.7[^1] | 3.0 | 3.1 | 3.2 | 3.3 | 3.4 | Notes   |
-|-----------------:|:--------|:----|:----|:----|:----|:----|:--------|
-| 6.0              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
-| 6.1              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
-| 7.0              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
-| 7.1              | ✅      | ✅  | ✅  | ✅  | ❌  | ❌  | (1) |
-| 7.2              | ❌      | ❌  | ✅  | ✅  | ✅  | ✅  | (2) |
-| 8.0              | ❌      | ❌  | ❌  | ✅  | ✅  | ✅  | (3) |
-| main branch      | ❌      | ❌  | ❌  | ✅  | ✅  | ✅  | (3) |
+| ↓ Rails / Ruby → | 3.2 | 3.3 | 3.4 | Notes   |
+|-----------------:|:----|:----|:----|:--------|
+| 7.0              | ✅  | ❌  | ❌  | (1) |
+| 7.1              | ✅  | ❌  | ❌  | (1) |
+| 7.2              | ✅  | ✅  | ✅  |     |
+| 8.0              | ✅  | ✅  | ✅  | (2) |
+| 8.1              | ✅  | ✅  | ✅  | (2) |
+| main branch      | ✅  | ✅  | ✅  | (2) |
 
 <details open><summary>Notes</summary>
 
 1. Rails upto 7.2 depends on a version of Nokogiri which isn't available for Ruby 3.2+
-2. Rails 7.2 requires Ruby 3.1+[^2]
-3. Rails 8.0+ requires Ruby 3.2+[^3]
+2. Rails 8.0+ requires Ruby 3.2+[^2]
 
 </details>
 
@@ -38,11 +36,9 @@ Install the gem and add to the application's Gemfile by executing:
 
     $ bundle add texd
 
-[^1]: We're currently tracking the Ruby version shipped with [Ubuntu Focal (20.04 LTS)](https://packages.ubuntu.com/focal/ruby). This may jump to [Ubuntu Noble (24.04 LTS)](https://packages.ubuntu.com/noble/ruby) and Ruby 3.2 in the future.
+[^1]: We're focussing on the minimal Ruby version available in [Debian Stable](https://packages.debian.org/trixie/ruby) and [Ubuntu LTS](https://packages.ubuntu.com/noble/ruby), i.e. 3.3 and 3.2 respectively. Regarding Rails, we'll cover a wider range.
 
-[^2]: See [commit `6ba2fdb`][https://github.com/rails/rails/commit/6ba2fdb2fe85751b573aadd05608471daf1a44ff] and [PR #50491][https://github.com/rails/rails/pull/50491] in the Rails repository.
-
-[^3]: See [commit `c7b9bb1`][https://github.com/rails/rails/commit/c7b9bb1b73628daf9c9ebd56c63ce3008b31ac6f] in the Rails repository
+[^2]: See [commit `c7b9bb1`][https://github.com/rails/rails/commit/c7b9bb1b73628daf9c9ebd56c63ce3008b31ac6f] in the Rails repository
 
 ## Configuration
 
@@ -253,8 +249,8 @@ $ make run-container EXTRA_RUN_ARGS='--reference-store dir://./tmp/refs'
 ```
 
 Note: In order to run the tests against the latest `rails/main` commit, you
-need to have Ruby 3.2+ installed. To run the tests against all released Rails
-versions, Ruby 2.7 currently suffices.
+need to have Ruby 3.2 or newer installed. To run the tests against all released
+Rails versions, Ruby 3.2 currently suffices.
 
 I'd recommend running `USE_DOCKER=1 make test-all` to run against all minimally
 supported Ruby versions in Docker containers. This obviously requires Docker to
