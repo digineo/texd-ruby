@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: d5827e2deda604903925434de5374c4b8e8e0cd2
+  revision: a262ba0c2012cd4c6b53f6c3dd3d46d110797406
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -137,12 +137,13 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.15.1)
+    json (2.15.2)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.8.1)
+    mail (2.9.0)
+      logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -199,7 +200,7 @@ GEM
       tsort
     reline (0.6.2)
       io-console (~> 0.5)
-    rspec (3.13.1)
+    rspec (3.13.2)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
