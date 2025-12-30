@@ -98,11 +98,19 @@ if [ "$USE_DOCKER" = "1" ]; then
 
 	mkdir -p "$dockerhome"
 
+	link_container=
+	texd_endpoint="--env TEXD_ENDPOINT"
+	if [ -n "$(docker container ls -qf 'name=texd-dev' | tr -d '\n')" ]; then
+		link_container="--link texd-dev"
+		texd_endpoint="--env TEXD_ENDPOINT=http://texd-dev:2201/"
+	fi
+
 	exec docker run --rm \
 		--user $(id -u):$(id -g) \
 		--volume "$(pwd):/texd" \
 		--workdir /texd \
-		--env TEXD_ENDPOINT \
+		$link_container \
+		$texd_endpoint \
 		--env HOME="/texd/${dockerhome}" \
 		--env GEM_HOME="/texd/${dockerhome}/gems" \
 		--env BUNDLE_PATH="/texd/${dockerhome}/bundle" \
