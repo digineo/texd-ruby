@@ -42,7 +42,7 @@ module Texd
       end
 
       # Convenience accessor for the main input file.
-      # @returns [String] main input file contents
+      # @return [String] main input file contents
       def main_input_contents
         attachments.items.fetch(main_input_name).contents
       end
