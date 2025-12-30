@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 gemspec path: "../.."
 
-gem "pry-byebug"
+gem "debug"
 gem "rails", "~> 7.2.0.beta3"
 
 gem "concurrent-ruby", "1.3.4"

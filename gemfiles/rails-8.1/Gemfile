@@ -3,8 +3,8 @@
 source "https://rubygems.org"
 gemspec path: "../.."
 
-gem "pry-byebug"
-gem "rails", "~> 8.1.0.rc1"
+gem "debug"
+gem "rails", "~> 8.1.0"
 
 # keep in sync with ../../Gemfile
 group :development, :test do

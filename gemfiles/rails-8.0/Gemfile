@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 gemspec path: "../.."
 
-gem "pry-byebug"
+gem "debug"
 gem "rails", "~> 8.0.0"
 
 # keep in sync with ../../Gemfile

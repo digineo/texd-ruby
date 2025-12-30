@@ -3,10 +3,9 @@
 source "https://rubygems.org"
 gemspec
 
-gem "nokogiri", "~> 1.15.5" # remove constraint when min. RUBY_VERSION >= 3
-gem "pry-byebug"
+gem "debug"
+gem "nokogiri"
 gem "rails", "~> 7.0"
-
 gem "yard", group: :docs
 
 group :development do
