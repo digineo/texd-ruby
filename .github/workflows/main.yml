@@ -10,7 +10,7 @@ jobs:
     name: Ruby ${{ matrix.ruby }}/Rails ${{ matrix.rails }}
     strategy:
       matrix:
-        ruby:  ['3.2', '3.3', '3.4']
+        ruby:  ['3.2', '3.3', '3.4', '4.0']
         rails: ['7.0', '7.1', '7.2', '8.0', '8.1']
         exclude:
           # Rails < 7.2 is incompat with Ruby 3.3+
@@ -18,6 +18,8 @@ jobs:
           - { ruby: '3.3', rails: '7.1' }
           - { ruby: '3.4', rails: '7.0' }
           - { ruby: '3.4', rails: '7.1' }
+          - { ruby: '4.0', rails: '7.0' }
+          - { ruby: '4.0', rails: '7.1' }
       fail-fast: false # applies to matrix
     continue-on-error: true # applies to job
 

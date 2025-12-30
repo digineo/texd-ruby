@@ -16,14 +16,14 @@ The following Rails and Ruby versions[^1] are supported
 [and tested](https://github.com/digineo/texd-ruby/actions/workflows/main.yml?query=branch%3Amaster);
 older versions of Ruby and Rails *may* work, but this is not guaranteed.
 
-| ↓ Rails / Ruby → | 3.2 | 3.3 | 3.4 | Notes   |
-|-----------------:|:----|:----|:----|:--------|
-| 7.0              | ✅  | ❌  | ❌  | (1) |
-| 7.1              | ✅  | ❌  | ❌  | (1) |
-| 7.2              | ✅  | ✅  | ✅  |     |
-| 8.0              | ✅  | ✅  | ✅  | (2) |
-| 8.1              | ✅  | ✅  | ✅  | (2) |
-| main branch      | ✅  | ✅  | ✅  | (2) |
+| ↓ Rails / Ruby → | 3.2 | 3.3 | 3.4 | 4.0 | Notes   |
+|-----------------:|:----|:----|:----|:----|:--------|
+| 7.0              | ✅  | ❌  | ❌  | ❌  | (1) |
+| 7.1              | ✅  | ❌  | ❌  | ❌  | (1) |
+| 7.2              | ✅  | ✅  | ✅  | ✅  |     |
+| 8.0              | ✅  | ✅  | ✅  | ✅  | (2) |
+| 8.1              | ✅  | ✅  | ✅  | ✅  | (2) |
+| main branch      | ✅  | ✅  | ✅  | ✅  | (2) |
 
 <details open><summary>Notes</summary>
 
