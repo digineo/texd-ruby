@@ -83,7 +83,6 @@ case "$1" in
 	;;
 esac
 
-
 # When USE_DOCKER is set, run the command in a Docker container.
 # Here, the following options become relevant or change their meaning:
 #
@@ -105,7 +104,7 @@ if [ "$USE_DOCKER" = "1" ]; then
 	link_container=
 	texd_endpoint="--env TEXD_ENDPOINT"
 
-	if [ -n "TEXD_LINK" ]; then
+	if [ -n "$TEXD_LINK" ]; then
 		link_container="--link ${TEXD_LINK}"
 		texd_endpoint="--env TEXD_ENDPOINT=http://${TEXD_LINK}:2201/"
 	elif [ -n "$(docker container ls -qf 'name=texd-dev' | tr -d '\n')" ]; then
