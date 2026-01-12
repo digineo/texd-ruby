@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 3d31d593e6cf0f82fa9bd0338b635af2f30d627b
+  revision: 5bc739b41989ed7fe51ff8655e9773596b628e47
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -34,7 +34,7 @@ GIT
       rails-html-sanitizer (~> 1.6)
       useragent (~> 0.16)
     actiontext (8.2.0.alpha)
-      action_text-trix (~> 2.1.15)
+      action_text-trix (~> 2.1.16)
       actionpack (= 8.2.0.alpha)
       activerecord (= 8.2.0.alpha)
       activestorage (= 8.2.0.alpha)
@@ -110,7 +110,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    action_text-trix (2.1.15)
+    action_text-trix (2.1.16)
       railties
     base64 (0.3.0)
     bigdecimal (4.0.1)
@@ -220,7 +220,7 @@ GEM
     rspec-support (3.13.6)
     securerandom (0.4.1)
     stringio (3.2.0)
-    thor (1.4.0)
+    thor (1.5.0)
     timeout (0.6.0)
     tsort (0.2.0)
     tzinfo (2.0.6)
