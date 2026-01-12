@@ -84,6 +84,16 @@ case "$1" in
 esac
 
 
+# When USE_DOCKER is set, run the command in a Docker container.
+# Here, the following options become relevant or change their meaning:
+#
+# - TEXD_ENDPOINT must now point to the address of the texd instance
+#   *from within the test container*. In particular, this can be the
+#   container name of the texd container.
+# - TEXD_LINK specifies the name of the container running texd. When
+#   omitted, we assume that container was started via `make texd-docker`,
+#   which starts a container named "texd-dev". If this is not the case,
+#   you need to explicitly set the env var.
 if [ "$USE_DOCKER" = "1" ]; then
 	dockerhome=".docker/project"
 	if [ -n "$gemdir" ]; then
@@ -94,7 +104,11 @@ if [ "$USE_DOCKER" = "1" ]; then
 
 	link_container=
 	texd_endpoint="--env TEXD_ENDPOINT"
-	if [ -n "$(docker container ls -qf 'name=texd-dev' | tr -d '\n')" ]; then
+
+	if [ -n "TEXD_LINK" ]; then
+		link_container="--link ${TEXD_LINK}"
+		texd_endpoint="--env TEXD_ENDPOINT=http://${TEXD_LINK}:2201/"
+	elif [ -n "$(docker container ls -qf 'name=texd-dev' | tr -d '\n')" ]; then
 		link_container="--link texd-dev"
 		texd_endpoint="--env TEXD_ENDPOINT=http://texd-dev:2201/"
 	fi
