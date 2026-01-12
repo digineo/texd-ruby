@@ -23,12 +23,13 @@ older versions of Ruby and Rails *may* work, but this is not guaranteed.
 | 7.2              | ✅  | ✅  | ✅  | ✅  |     |
 | 8.0              | ✅  | ✅  | ✅  | ✅  | (2) |
 | 8.1              | ✅  | ✅  | ✅  | ✅  | (2) |
-| main branch      | ✅  | ✅  | ✅  | ✅  | (2) |
+| main branch      | ❌  | ✅  | ✅  | ✅  | (3) |
 
 <details open><summary>Notes</summary>
 
 1. Rails upto 7.2 depends on a version of Nokogiri which isn't available for Ruby 3.2+
 2. Rails 8.0+ requires Ruby 3.2+[^2]
+2. Rails Edge requires Ruby 3.3+[^3]
 
 </details>
 
@@ -38,7 +39,9 @@ Install the gem and add to the application's Gemfile by executing:
 
 [^1]: We're focussing on the minimal Ruby version available in [Debian Stable](https://packages.debian.org/trixie/ruby) and [Ubuntu LTS](https://packages.ubuntu.com/noble/ruby), i.e. 3.3 and 3.2 respectively. Regarding Rails, we'll cover a wider range.
 
-[^2]: See [commit `c7b9bb1`][https://github.com/rails/rails/commit/c7b9bb1b73628daf9c9ebd56c63ce3008b31ac6f] in the Rails repository
+[^2]: See [commit `c7b9bb1b73`](https://github.com/rails/rails/commit/c7b9bb1b73628daf9c9ebd56c63ce3008b31ac6f) in the Rails repository
+
+[^3]: See [commit `fc22a8fc62`](https://github.com/rails/rails/commit/fc22a8fc62d5240c0d09f1078800900ea2f132ff) in the Rails repository
 
 ## Configuration
 

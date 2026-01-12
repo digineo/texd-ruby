@@ -49,8 +49,10 @@ gemdir=
 rails_ver="$1"
 shift
 
-# determine Ruby version from Rails version. rails-main and 7.2+ require
-# Ruby 3.1+, the rest is kept at 2.7 for now.
+# Determine Ruby version from Rails version.
+# By default, we use Ruby 3.2, with the following exceptions:
+#
+# - rails-main requires 3.3+
 case "$rails_ver" in
 ".")
 	gemdir=""
@@ -58,15 +60,7 @@ case "$rails_ver" in
 	;;
 "main")
 	gemdir="gemfiles/rails-main"
-	ruby_ver="3.2"
-	;;
-"8.0")
-	gemdir="gemfiles/rails-8.0"
-	ruby_ver="3.2"
-	;;
-"7.2")
-	gemdir="gemfiles/rails-7.2"
-	ruby_ver="3.2"
+	ruby_ver="3.3"
 	;;
 *)
 	gemdir="gemfiles/rails-${rails_ver}"

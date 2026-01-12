@@ -10,7 +10,7 @@ jobs:
     name: Ruby ${{ matrix.ruby }}/Rails ${{ matrix.rails }}
     strategy:
       matrix:
-        ruby:  ['3.2', '3.3', '3.4', '4.0']
+        ruby:  ['3.3', '3.4', '4.0']
         rails: ['main']
 
     env:

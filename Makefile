@@ -4,10 +4,10 @@ SPEC =
 test: test-stable rubocop
 
 .PHONY: test-stable
-test-stable: rails-7.0 rails-7.1 rails-7.2 rails-8.0
+test-stable: rails-7.0 rails-7.1 rails-7.2 rails-8.0 rails-8.1
 
 .PHONY: test-all
-test-all: test rails-main rails-8.1
+test-all: test rails-main
 
 .PHONY: update-all-dependencies
 update-all-dependencies: update test-all
