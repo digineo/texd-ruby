@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: b0581eec65b9939e285e4d5e09a513ec9296723d
+  revision: 13c9effcae3a00e4c2d46e8d069340220cc8bc03
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -140,7 +140,7 @@ GEM
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.18.1)
+    json (2.19.1)
     logger (1.7.0)
     loofah (2.25.0)
       crass (~> 1.0.2)
