@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 706b9daab37664710de20cca273eb9ffa5361ec3
+  revision: a0da6b991a1c2cb1df2560a74ae3a86bc988f231
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -113,7 +113,7 @@ GEM
     action_text-trix (2.1.18)
       railties
     base64 (0.3.0)
-    bigdecimal (4.1.0)
+    bigdecimal (4.1.1)
     builder (3.3.0)
     combustion (1.5.0)
       activesupport (>= 3.0.0)
@@ -153,7 +153,7 @@ GEM
       net-smtp
     marcel (1.1.0)
     mini_mime (1.1.5)
-    minitest (6.0.2)
+    minitest (6.0.3)
       drb (~> 2.0)
       prism (~> 1.5)
     multipart-post (2.4.1)
@@ -177,7 +177,7 @@ GEM
       date
       stringio
     racc (1.8.1)
-    rack (3.2.5)
+    rack (3.2.6)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
