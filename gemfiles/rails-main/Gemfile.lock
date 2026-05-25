@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 07c4e0250a216c5d039f616e3b425250e9cd75a8
+  revision: ba547fcec0e95fc4a15c759df7cd396d5b008d45
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -151,7 +151,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.0)
+    marcel (1.2.1)
     mini_mime (1.1.5)
     minitest (6.0.6)
       drb (~> 2.0)
@@ -233,7 +233,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.7.5)
+    zeitwerk (2.8.2)
 
 PLATFORMS
   x86_64-linux
