@@ -21,7 +21,10 @@ jobs:
           - { ruby: '4.0', rails: '7.0' }
           - { ruby: '4.0', rails: '7.1' }
       fail-fast: false # applies to matrix
-    continue-on-error: true # applies to job
+    # Applies to job. Single matrix failures are tolerated, except on automated
+    # dependency update branches, where a red matrix must block the auto-merge
+    # (see .github/workflows/auto-merge.yml).
+    continue-on-error: ${{ !startsWith(github.head_ref || github.ref_name, 'chore/update-') }}
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails-${{ matrix.rails }}/Gemfile

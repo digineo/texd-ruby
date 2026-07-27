@@ -15,6 +15,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        # Pushes and PRs authenticated with github.token do not trigger further
+        # workflow runs, which would leave the update PR without any test
+        # results (and hence unmergeable by auto-merge.yml).
+        token: ${{ secrets.BOT_TOKEN || github.token }}
 
     - name: Update Dependencies
       env:
@@ -25,7 +30,7 @@ jobs:
 
     - name: Create PR
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ secrets.BOT_TOKEN || github.token }}
       run: |
         if git diff --exit-code **/Gemfile.lock >/dev/null; then
           echo "no changes"
@@ -45,4 +50,4 @@ jobs:
 
         gh pr create \
           --title "Weekly dependency update" \
-          --body "These are the updates for $week."
+          --body "These are the updates for $week. Merged automatically once all test workflows have passed."

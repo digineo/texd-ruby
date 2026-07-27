@@ -1,0 +1,77 @@
+name: Auto-Merge Dependency Updates
+
+# Runs after each test workflow finishes. Once *every* test workflow has
+# succeeded for the head commit of an automated dependency update PR, that PR
+# is merged. If one of them failed, the PR is left open for manual review.
+#
+# Note: workflow_run only fires for the version of this file on the default
+# branch.
+on:
+  workflow_run:
+    workflows:
+      - Ruby              # .github/workflows/main.yml
+      - Rails Pre-Release # .github/workflows/rails-main.yml
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    # Only consider the pull_request runs of update branches created by
+    # .github/workflows/update.yml.
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      startsWith(github.event.workflow_run.head_branch, 'chore/update-')
+
+    steps:
+    - name: Merge if all test workflows succeeded
+      env:
+        # Workflow files which must all report success. Keep in sync with the
+        # `workflows:` filter above.
+        REQUIRED_WORKFLOWS: main.yml rails-main.yml
+        BRANCH: ${{ github.event.workflow_run.head_branch }}
+        HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        # Merging with a bot token (instead of github.token) makes the push to
+        # the default branch trigger the test workflows again.
+        GH_TOKEN: ${{ secrets.BOT_TOKEN || github.token }}
+      run: |
+        set -euo pipefail
+
+        pr=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+        if [ -z "$pr" ]; then
+          echo "::notice::no open PR for $BRANCH"
+          exit 0
+        fi
+
+        # Safety net: never merge anything but lockfile updates.
+        files=$(gh pr diff "$pr" --name-only)
+        if grep -qvE '^(gemfiles/[^/]+/)?Gemfile\.lock$' <<<"$files"; then
+          echo "::warning::#$pr touches more than Gemfile.lock, not merging"
+          exit 0
+        fi
+
+        for wf in $REQUIRED_WORKFLOWS; do
+          read -r status conclusion <<<"$(gh api \
+            "repos/$GITHUB_REPOSITORY/actions/workflows/$wf/runs?head_sha=$HEAD_SHA&event=pull_request&per_page=1" \
+            --jq '.workflow_runs[0] | "\(.status // "missing") \(.conclusion // "none")"')"
+
+          case "$status:$conclusion" in
+          completed:success)
+            echo "$wf: success"
+            ;;
+          completed:*)
+            echo "::warning::$wf: $conclusion, leaving #$pr open for review"
+            exit 0
+            ;;
+          *)
+            echo "::notice::$wf: $status, waiting for it to finish"
+            exit 0
+            ;;
+          esac
+        done
+
+        gh pr merge "$pr" --squash --delete-branch
