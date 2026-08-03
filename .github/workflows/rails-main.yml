@@ -17,7 +17,7 @@ jobs:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails-${{ matrix.rails }}/Gemfile
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
