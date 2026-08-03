@@ -28,6 +28,8 @@ jobs:
       startsWith(github.event.workflow_run.head_branch, 'chore/update-')
 
     steps:
+    - uses: actions/checkout@v7
+
     - name: Merge if all test workflows succeeded
       env:
         # Workflow files which must all report success. Keep in sync with the
