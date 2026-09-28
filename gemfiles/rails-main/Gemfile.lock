@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 12236e0678eb6b2763419fc92f1e1f3854f3a30b
+  revision: c9e85dbe297e248dd2f217d04f84a94881ac046a
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -74,7 +74,7 @@ GIT
       logger (>= 1.4.2)
       minitest (>= 5.1)
       psych (>= 4)
-      ractor-dispatch (>= 0.2.0)
+      ractor-dispatch (>= 0.3.0)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
@@ -134,7 +134,7 @@ GEM
     erubi (1.13.1)
     globalid (1.4.0)
       activesupport (>= 6.1)
-    herb (0.10.4-x86_64-linux-gnu)
+    herb (0.11.0-x86_64-linux-gnu)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     io-console (0.9.4)
