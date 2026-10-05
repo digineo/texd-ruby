@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: c9e85dbe297e248dd2f217d04f84a94881ac046a
+  revision: e3d5c569d217c56c022b04acb127a8c24dbe9685
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -167,7 +167,7 @@ GEM
       net-protocol
     net-protocol (0.4.0)
       timeout
-    net-smtp (0.5.1)
+    net-smtp (0.5.2)
       net-protocol
     nio4r (2.7.5)
     nokogiri (1.19.4-x86_64-linux-gnu)
@@ -201,7 +201,7 @@ GEM
       logger
       prism (>= 1.6.0)
       tsort
-    rdoc (8.0.0)
+    rdoc (8.1.0)
       erb
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
